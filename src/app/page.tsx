@@ -185,7 +185,9 @@ export default function Home() {
       <div className="container mx-auto px-4 py-12">
         {/* About */}
         <AnimatedSection className="mb-12">
-          <h2 className="text-2xl font-bold mb-4 text-gray-900">About</h2>
+          <h2 className="text-2xl font-bold mb-4 text-gray-900" id="about">
+            About Martin
+          </h2>
           <p className="text-gray-700 text-lg leading-relaxed">
             A Lead SDET / Quality Engineer with over 12 years&apos; commercial
             experience designing, implementing, and maintaining both UI and API
@@ -193,6 +195,11 @@ export default function Home() {
             projects. A code-focused technical tester, with extensive experience
             in the usage of Cypress, Playwright, and Selenium WebDriver to build
             automated tests within Node.js / Java / .NET environments.
+          </p>
+          <p className="text-gray-700 text-lg leading-relaxed mt-4">
+            Strong level of experience training, managing, and mentoring junior
+            level testers new to coding and applying automation to testing
+            processes.
           </p>
         </AnimatedSection>
 

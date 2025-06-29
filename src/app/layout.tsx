@@ -5,7 +5,7 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Martin Poole - Test Automation Specialist",
+  title: "Martin Poole - Test Automation Specialist / Lead Quality Engineer",
   description:
     "Test Automation Specialist / Lead Quality Engineer with over 12 years of commercial experience.",
 };
