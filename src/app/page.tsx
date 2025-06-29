@@ -1,154 +1,179 @@
-import Header from '@/components/Header';
-import ExperienceItem from '@/components/ExperienceItem';
-import SkillSection from '@/components/SkillSection';
-import { AnimatedSection } from '@/components/AnimatedSection';
+import Header from "@/components/Header";
+import ExperienceItem from "@/components/ExperienceItem";
+import SkillSection from "@/components/SkillSection";
+import { AnimatedSection } from "@/components/AnimatedSection";
 
 export default function Home() {
   const programmingLanguages = [
-    { name: 'JavaScript/TypeScript', level: 5 },
-    { name: 'Java', level: 4 },
-    { name: 'C#/.NET', level: 4 },
-    { name: 'Python', level: 3 },
+    { name: "JavaScript/TypeScript", level: 9 },
+    { name: "Java", level: 3 },
+    { name: "C#/.NET", level: 3 },
+    { name: "Python", level: 2 },
   ];
 
   const testingTools = [
-    { name: 'Playwright' },
-    { name: 'Cypress' },
-    { name: 'Selenium WebDriver' },
-    { name: 'Protractor' },
-    { name: 'SpecFlow' },
-    { name: 'Cucumber' },
-    { name: 'Jest' },
-    { name: 'Mocha' },
-    { name: 'Gherkin' },
-    { name: 'JMeter' },
-    { name: 'K6' },
-    { name: 'OWASP ZAP' },
-    { name: 'Stackhawk' },
-    { name: 'JUnit' },
-    { name: 'Maven' },
-    { name: 'Percy' },
-    { name: 'Applitools' },
-    { name: 'BrowserStack' },
-    { name: 'REST Assured' },
-    { name: 'Google Lighthouse' },
-    { name: 'Axe' },
+    { name: "Playwright" },
+    { name: "Cypress" },
+    { name: "Selenium WebDriver" },
+    { name: "Protractor" },
+    { name: "SpecFlow" },
+    { name: "Cucumber" },
+    { name: "Jest" },
+    { name: "Mocha" },
+    { name: "Gherkin" },
+    { name: "JMeter" },
+    { name: "K6" },
+    { name: "OWASP ZAP" },
+    { name: "Stackhawk" },
+    { name: "JUnit" },
+    { name: "Maven" },
+    { name: "Percy" },
+    { name: "Applitools" },
+    { name: "BrowserStack" },
+    { name: "REST Assured" },
+    { name: "Google Lighthouse" },
+    { name: "Axe" },
   ];
 
   const ciTools = [
-    { name: 'GitHub Actions' },
-    { name: 'Bitbucket' },
-    { name: 'Jenkins' },
-    { name: 'CircleCI' },
-    { name: 'Azure Devops' },
-    { name: 'Git' },
-    { name: 'Datadog' },
-    { name: 'Snyk' },
-    { name: 'SonarCloud' },
+    { name: "GitHub Actions" },
+    { name: "Bitbucket" },
+    { name: "Jenkins" },
+    { name: "CircleCI" },
+    { name: "Azure Devops" },
+    { name: "Git" },
+    { name: "Datadog" },
+    { name: "Snyk" },
+    { name: "SonarCloud" },
   ];
 
   const webTech = [
-    { name: 'React' },
-    { name: 'Webpack' },
-    { name: 'Vite' },
-    { name: 'Node.js' },
-    { name: 'HTML' },
-    { name: 'CSS' },
-    { name: 'Angular' },
-    { name: 'Storybook' },
-    { name: 'Vue.js' },
+    { name: "React" },
+    { name: "Webpack" },
+    { name: "Vite" },
+    { name: "Node.js" },
+    { name: "HTML" },
+    { name: "CSS" },
+    { name: "Angular" },
+    { name: "Storybook" },
+    { name: "Vue.js" },
   ];
 
   const experiences = [
     {
-      title: 'Automation Test Lead',
-      company: 'Legal & General',
-      period: 'October 2023 – Present',
-      location: 'Hove / London / Cardiff / Remote – UK',
-      skills: ['Playwright', 'Cucumber', 'GitHub Actions', 'Applitools', 'TypeScript/JavaScript'],
+      title: "Automation Test Lead",
+      company: "Legal & General",
+      period: "October 2023 – Present",
+      location: "Hove / London / Cardiff / Remote – UK",
+      skills: [
+        "Playwright",
+        "Cucumber",
+        "GitHub Actions",
+        "Applitools",
+        "TypeScript/JavaScript",
+      ],
       responsibilities: [
-        'Overseeing multiple project workstreams and architecting test automation strategies / approaches.',
-        'Extensively using Playwright to further enhance and modernise existing UI and API based test automation frameworks.',
-        'Implementing CI integration and applying optimised workflows using GitHub Actions and Azure DevOps for multiple projects.',
-        'Incorporating Applitools integration for automated visual regression testing for department wide usage across several large UI based projects.',
-        'Introducing a Playwright based API testing framework for regression testing activities which exposed multiple defects with GraphQL endpoints. Also used as a basis for a load test framework.',
-        'Running regular training sessions and taking part in a 2024 testing conference where I ran a well-received session on Playwright usage.',
-        'Leveraging AI (GPT, Claude 3.5/3.7) with GitHub Copilot to enhance and speed up the process of generating tests. Training others to work with AI to maximise their test coverage.',
-        'Acting as a lead on a highly complex regulatory project overseeing the work of a team of graduates to ensure best practices adhered to within a large Playwright based framework.',
+        "Overseeing multiple project workstreams and architecting test automation strategies / approaches.",
+        "Extensively using Playwright to further enhance and modernise existing UI and API based test automation frameworks.",
+        "Implementing CI integration and applying optimised workflows using GitHub Actions and Azure DevOps for multiple projects.",
+        "Incorporating Applitools integration for automated visual regression testing for department wide usage across several large UI based projects.",
+        "Introducing a Playwright based API testing framework for regression testing activities which exposed multiple defects with GraphQL endpoints. Also used as a basis for a load test framework.",
+        "Running regular training sessions and taking part in a 2024 testing conference where I ran a well-received session on Playwright usage.",
+        "Leveraging AI (GPT, Claude 3.5/3.7) with GitHub Copilot to enhance and speed up the process of generating tests. Training others to work with AI to maximise their test coverage.",
+        "Acting as a lead on a highly complex regulatory project overseeing the work of a team of graduates to ensure best practices adhered to within a large Playwright based framework.",
       ],
     },
     {
-      title: 'Senior Quality Engineer / SDET',
-      company: 'Matillion',
-      period: 'February 2022 – October 2023',
-      location: 'Remote / Manchester – UK',
-      skills: ['Cypress', 'Percy', 'StackHawk', 'K6', 'CircleCI', 'Datadog', 'TypeScript/JavaScript'],
+      title: "Senior Quality Engineer / SDET",
+      company: "Matillion",
+      period: "February 2022 – October 2023",
+      location: "Remote / Manchester – UK",
+      skills: [
+        "Cypress",
+        "Percy",
+        "StackHawk",
+        "K6",
+        "CircleCI",
+        "Datadog",
+        "TypeScript/JavaScript",
+      ],
       responsibilities: [
-        'Worked as part of a front-end team to deliver a cutting-edge SaaS based ETL application called the Data Productivity Cloud – a first in the industry.',
-        'Development and testing of React based websites and component libraries using tools such as Cypress, Percy, and Jest.',
-        'Built and maintained a framework for load testing APIs using K6 as part of an integrated pipeline in CircleCI.',
-        'Became a member of the Cy.pronauts programme, where Cypress experts from around the world were invited to join a closed community to gain access to Beta features and share feedback by the Cypress team.',
-        'Devised solutions for testing Launch Darkly Feature Flags using Cypress and performing automated regression testing after regular deployments to multiple environments.',
-        'Creation and maintenance of an NPM package for company-wide consumption of re-usable Cypress commands/functions across multiple front-end teams.',
-        'Development of a bespoke framework utilising Cypress Component Testing and the Axe-core testing engine to check for accessibility violations against React based components used as part of multiple micro frontends (ensured a WCAG 2.1 AA standard).',
-        'Setting up DAST scanning using Stackhawk and Cypress for comprehensive automated security testing within a CircleCI pipeline.',
-        'Created an optimal approach for automated visual testing using Percy in conjunction with Cypress. This significantly reduced the need for many functional tests and dropped execution times in CI to minimal levels.',
-        'Training fellow developers and testers in the usage of Cypress and building effective, robust integration tests via video conferencing sessions, face to face mentoring, and creation of Wiki/Confluence pages.',
-        'Setting up CI pipelines (CircleCI, Bitbucket) and synthetic tests in Datadog for efficient \'shift left\' and ‘shift right’ deployment and testing practices.',
+        "Worked as part of a front-end team to deliver a cutting-edge SaaS based ETL application called the Data Productivity Cloud – a first in the industry.",
+        "Development and testing of React based websites and component libraries using tools such as Cypress, Percy, and Jest.",
+        "Built and maintained a framework for load testing APIs using K6 as part of an integrated pipeline in CircleCI.",
+        "Became a member of the Cy.pronauts programme, where Cypress experts from around the world were invited to join a closed community to gain access to Beta features and share feedback by the Cypress team.",
+        "Devised solutions for testing Launch Darkly Feature Flags using Cypress and performing automated regression testing after regular deployments to multiple environments.",
+        "Creation and maintenance of an NPM package for company-wide consumption of re-usable Cypress commands/functions across multiple front-end teams.",
+        "Development of a bespoke framework utilising Cypress Component Testing and the Axe-core testing engine to check for accessibility violations against React based components used as part of multiple micro frontends (ensured a WCAG 2.1 AA standard).",
+        "Setting up DAST scanning using Stackhawk and Cypress for comprehensive automated security testing within a CircleCI pipeline.",
+        "Created an optimal approach for automated visual testing using Percy in conjunction with Cypress. This significantly reduced the need for many functional tests and dropped execution times in CI to minimal levels.",
+        "Training fellow developers and testers in the usage of Cypress and building effective, robust integration tests via video conferencing sessions, face to face mentoring, and creation of Wiki/Confluence pages.",
+        "Setting up CI pipelines (CircleCI, Bitbucket) and synthetic tests in Datadog for efficient 'shift left' and ‘shift right’ deployment and testing practices.",
       ],
     },
     {
-      title: 'Senior Test Automation Engineer / SDET',
-      company: 'Legal & General',
-      period: 'July 2018 – February 2022',
-      location: 'Hove / London / Remote – UK',
-      skills: ['Playwright', 'Cucumber', 'Protractor', 'Rest Assured', 'JMeter', 'Jenkins', 'Github Actions', 'Applitools', 'TypeScript/JavaScript', 'Java'],
+      title: "Senior Test Automation Engineer / SDET",
+      company: "Legal & General",
+      period: "July 2018 – February 2022",
+      location: "Hove / London / Remote – UK",
+      skills: [
+        "Playwright",
+        "Cucumber",
+        "Protractor",
+        "Rest Assured",
+        "JMeter",
+        "Jenkins",
+        "Github Actions",
+        "Applitools",
+        "TypeScript/JavaScript",
+        "Java",
+      ],
       responsibilities: [
-        'Senior Automation Engineer embedded within scrum teams delivering Angular based web applications and associated REST and GraphQL backend microservices using tools such as Protractor, JMeter, and Cucumber in TypeScript / Node.js.',
-        'Introduced Applitools to testing frameworks for driving automated visual testing. This saved countless hours of execution time and minimised the need for more conventional functional tests.',
-        'Wrote a Java based BDD framework utilising dependency injection for automated testing of GraphQL APIs using Rest Assured, Maven, JUnit, Cucumber.',
-        'Developed and ran load tests for regularly checking various endpoints to ensure they remained performant under stress (JMeter, JUnit, Java, Maven).',
-        'Performed regular penetration testing with Open Web Application Security Project (OWASP) tools such as ZAP to test for vulnerabilities to common attack vectors and built a bespoke framework to use it alongside Selenium based scripts (Java, Selenium WebDriver, OWASP ZAP).',
-        'Architecting new frameworks for department wide migration to Github/Github Actions using future proofed web automation libraries supporting the CDP (Chrome Devtools Protocol) such as Playwright and Cypress. These framework patterns were later used across multiple teams/departments within the company.',
+        "Senior Automation Engineer embedded within scrum teams delivering Angular based web applications and associated REST and GraphQL backend microservices using tools such as Protractor, JMeter, and Cucumber in TypeScript / Node.js.",
+        "Introduced Applitools to testing frameworks for driving automated visual testing. This saved countless hours of execution time and minimised the need for more conventional functional tests.",
+        "Wrote a Java based BDD framework utilising dependency injection for automated testing of GraphQL APIs using Rest Assured, Maven, JUnit, Cucumber.",
+        "Developed and ran load tests for regularly checking various endpoints to ensure they remained performant under stress (JMeter, JUnit, Java, Maven).",
+        "Performed regular penetration testing with Open Web Application Security Project (OWASP) tools such as ZAP to test for vulnerabilities to common attack vectors and built a bespoke framework to use it alongside Selenium based scripts (Java, Selenium WebDriver, OWASP ZAP).",
+        "Architecting new frameworks for department wide migration to Github/Github Actions using future proofed web automation libraries supporting the CDP (Chrome Devtools Protocol) such as Playwright and Cypress. These framework patterns were later used across multiple teams/departments within the company.",
       ],
     },
     {
-      title: 'Senior Test Developer / SDET',
-      company: 'Applied Systems',
-      period: 'July 2014 – July 2018',
-      location: 'Brighton / Belfast – UK',
-      skills: ['SpecFlow', 'Selenium WebDriver', 'TeamCity', 'C#'],
+      title: "Senior Test Developer / SDET",
+      company: "Applied Systems",
+      period: "July 2014 – July 2018",
+      location: "Brighton / Belfast – UK",
+      skills: ["SpecFlow", "Selenium WebDriver", "TeamCity", "C#"],
       responsibilities: [
-        'Pioneered a bespoke automation framework written in C# using SpecFlow, Selenium WebDriver, MSTest, and Microsoft UIAutomation for a hybrid desktop/web-based insurance application.',
-        'Adopted DRY and SOLID programming principles to test automation code to keep codebase modular and easy to maintain. This included converting many legacy tests to use a cleaner Page Object based pattern.',
-        'Introduced BDD to test automation practices within the company and regularly trained testers in both the UK and US to use SpecFlow to write meaningful BDD Scenario steps and code them using best industry practices.',
-        'Helped formalise a process for signing off testing as part of a Kanban based delivery model.',
+        "Pioneered a bespoke automation framework written in C# using SpecFlow, Selenium WebDriver, MSTest, and Microsoft UIAutomation for a hybrid desktop/web-based insurance application.",
+        "Adopted DRY and SOLID programming principles to test automation code to keep codebase modular and easy to maintain. This included converting many legacy tests to use a cleaner Page Object based pattern.",
+        "Introduced BDD to test automation practices within the company and regularly trained testers in both the UK and US to use SpecFlow to write meaningful BDD Scenario steps and code them using best industry practices.",
+        "Helped formalise a process for signing off testing as part of a Kanban based delivery model.",
       ],
     },
     {
-      title: 'Senior Automation Engineer / SDET',
-      company: 'Equiniti (formerly MGM Advantage)',
-      period: 'July 2011 – June 2014',
-      location: 'Worthing – UK',
-      skills: ['HP QTP/UFT', 'Visual Basic'],
+      title: "Senior Automation Engineer / SDET",
+      company: "Equiniti (formerly MGM Advantage)",
+      period: "July 2011 – June 2014",
+      location: "Worthing – UK",
+      skills: ["HP QTP/UFT", "Visual Basic"],
       responsibilities: [
-        'Planned and developed an effective data-driven automation framework using HP QuickTest Professional (QTP/UFT), which encapsulated virtually every facet of business operations including actuarial and underwriting regression testing.',
-        'Oversaw the work of a team of external contract automation engineers during a large-scale regulatory project, acting as a tech lead and mentor.',
-        'Manual UAT and technical / white-box testing of regulatory and strategic software releases.',
-        'Regularly travelled to Dublin to work closely with Agile based development teams in order to identify and resolve defects during early stages of project test cycles.',
+        "Planned and developed an effective data-driven automation framework using HP QuickTest Professional (QTP/UFT), which encapsulated virtually every facet of business operations including actuarial and underwriting regression testing.",
+        "Oversaw the work of a team of external contract automation engineers during a large-scale regulatory project, acting as a tech lead and mentor.",
+        "Manual UAT and technical / white-box testing of regulatory and strategic software releases.",
+        "Regularly travelled to Dublin to work closely with Agile based development teams in order to identify and resolve defects during early stages of project test cycles.",
       ],
     },
     {
-      title: 'Senior Test Analyst',
-      company: 'Lloyds Banking Group',
-      period: 'August 2008 – June 2011',
-      location: 'Hove – UK',
-      skills: ['UAT', 'Test Planning'],
+      title: "Senior Test Analyst",
+      company: "Lloyds Banking Group",
+      period: "August 2008 – June 2011",
+      location: "Hove – UK",
+      skills: ["UAT", "Test Planning"],
       responsibilities: [
-        'Senior Test Analyst on one of the largest bank integration projects in UK history.',
-        'Defined and executed a testing scope for data migration activities and oversaw defect resolution with offshore IT teams.',
-        'Prepared metric / MI packs and progress reports for stakeholders.',
-        'Identified business requirements to form a test basis, created and executed functional UAT test cases as part of regression testing activities.',
+        "Senior Test Analyst on one of the largest bank integration projects in UK history.",
+        "Defined and executed a testing scope for data migration activities and oversaw defect resolution with offshore IT teams.",
+        "Prepared metric / MI packs and progress reports for stakeholders.",
+        "Identified business requirements to form a test basis, created and executed functional UAT test cases as part of regression testing activities.",
       ],
     },
   ];
@@ -156,32 +181,47 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-gray-100">
       <Header />
-      
+
       <div className="container mx-auto px-4 py-12">
         {/* About */}
-        <AnimatedSection className="mb-12"
-        >
+        <AnimatedSection className="mb-12">
           <h2 className="text-2xl font-bold mb-4 text-gray-900">About</h2>
           <p className="text-gray-700 text-lg leading-relaxed">
-            Test Automation Specialist / Lead SDET / Quality Engineer with over 12 years&apos; commercial experience designing,
-            implementing, and maintaining both UI and API based automation frameworks from scratch for large scale
-            greenfield projects. A code-focused technical tester, with extensive experience in the usage of Cypress,
-            Playwright, and Selenium WebDriver to build automated tests within Node.js / Java / .NET environments.
+            A Lead SDET / Quality Engineer with over 12 years&apos; commercial
+            experience designing, implementing, and maintaining both UI and API
+            based automation frameworks from scratch for large scale greenfield
+            projects. A code-focused technical tester, with extensive experience
+            in the usage of Cypress, Playwright, and Selenium WebDriver to build
+            automated tests within Node.js / Java / .NET environments.
           </p>
         </AnimatedSection>
 
         {/* Skills */}
         <section className="mb-12">
           <h2 className="text-2xl font-bold mb-6 text-gray-900">Core Skills</h2>
-          <SkillSection title="Programming Languages" items={programmingLanguages} index={0} />
-          <SkillSection title="Testing Tools/Libraries" items={testingTools} index={1} />
-          <SkillSection title="CI/Source Control/Code Quality" items={ciTools} index={2} />
+          <SkillSection
+            title="Programming Languages"
+            items={programmingLanguages}
+            index={0}
+          />
+          <SkillSection
+            title="Testing Tools/Libraries"
+            items={testingTools}
+            index={1}
+          />
+          <SkillSection
+            title="CI/Source Control/Code Quality"
+            items={ciTools}
+            index={2}
+          />
           <SkillSection title="Web Technologies" items={webTech} index={3} />
         </section>
 
         {/* Experience */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold mb-6 text-gray-900">Work Experience</h2>
+          <h2 className="text-2xl font-bold mb-6 text-gray-900">
+            Work Experience
+          </h2>
           {experiences.map((exp, index) => (
             <ExperienceItem key={index} {...exp} index={index} />
           ))}
@@ -189,22 +229,36 @@ export default function Home() {
 
         {/* Education */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold mb-6 text-gray-900">Education & Certifications</h2>
+          <h2 className="text-2xl font-bold mb-6 text-gray-900">
+            Education & Certifications
+          </h2>
           <AnimatedSection className="bg-white rounded-lg shadow-lg p-6">
             <div className="mb-6">
-              <h3 className="text-xl font-bold text-gray-900">Law Degree LL.B. (HONS)</h3>
+              <h3 className="text-xl font-bold text-gray-900">
+                Law Degree LL.B. (HONS)
+              </h3>
               <p className="text-gray-600">University of Sussex</p>
               <p className="text-gray-500">October 2005 – July 2008</p>
             </div>
             <div className="space-y-4">
               <div>
-                <h4 className="font-semibold text-gray-900">ISTQB - Certified Tester Advanced Level</h4>
-                <p className="text-gray-600">Test Automation Engineer (CTAL – TAE)</p>
-                <p className="text-gray-500">BCS (The Chartered Institute for IT) - September 2024</p>
+                <h4 className="font-semibold text-gray-900">
+                  ISTQB - Certified Tester Advanced Level
+                </h4>
+                <p className="text-gray-600">
+                  Test Automation Engineer (CTAL – TAE)
+                </p>
+                <p className="text-gray-500">
+                  BCS (The Chartered Institute for IT) - September 2024
+                </p>
               </div>
               <div>
-                <h4 className="font-semibold text-gray-900">ISTQB - ISEB Certified Tester Foundation Level (CTFL)</h4>
-                <p className="text-gray-600">BCS (The Chartered Institute for IT)</p>
+                <h4 className="font-semibold text-gray-900">
+                  ISTQB - ISEB Certified Tester Foundation Level (CTFL)
+                </h4>
+                <p className="text-gray-600">
+                  BCS (The Chartered Institute for IT)
+                </p>
                 <p className="text-gray-500">July 2011</p>
               </div>
             </div>

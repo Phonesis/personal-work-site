@@ -1,6 +1,6 @@
-'use client';
+"use client";
 
-import { motion } from 'framer-motion';
+import { motion } from "framer-motion";
 
 interface AnimatedSectionProps {
   children: React.ReactNode;
@@ -8,7 +8,11 @@ interface AnimatedSectionProps {
   className?: string;
 }
 
-export function AnimatedSection({ children, delay = 0, className = '' }: AnimatedSectionProps) {
+export function AnimatedSection({
+  children,
+  delay = 0,
+  className = "",
+}: AnimatedSectionProps) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}

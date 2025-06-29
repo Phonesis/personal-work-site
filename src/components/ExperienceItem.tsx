@@ -1,6 +1,6 @@
-'use client';
+"use client";
 
-import { AnimatedSection } from './AnimatedSection';
+import { AnimatedSection } from "./AnimatedSection";
 
 interface ExperienceItemProps {
   title: string;
@@ -19,10 +19,10 @@ export default function ExperienceItem({
   location,
   skills,
   responsibilities,
-  index
+  index,
 }: ExperienceItemProps) {
   return (
-    <AnimatedSection 
+    <AnimatedSection
       delay={index * 0.1}
       className="mb-8 bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow"
     >
@@ -33,7 +33,7 @@ export default function ExperienceItem({
         <span>{period}</span>
       </div>
       <div className="text-gray-500 mb-4">{location}</div>
-      
+
       <div className="mb-4">
         <div className="flex flex-wrap gap-2">
           {skills.map((skill, i) => (
@@ -46,7 +46,7 @@ export default function ExperienceItem({
           ))}
         </div>
       </div>
-      
+
       <ul className="list-disc list-inside space-y-2 text-gray-700">
         {responsibilities.map((resp, i) => (
           <li key={i}>{resp}</li>

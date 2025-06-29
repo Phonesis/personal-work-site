@@ -7,7 +7,7 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "Martin Poole - Test Automation Specialist",
   description:
-    "Test Automation Specialist / Lead SDET / Lead Quality Engineer with over 12 years of commercial experience.",
+    "Test Automation Specialist / Lead Quality Engineer with over 12 years of commercial experience.",
 };
 
 export default function RootLayout({
