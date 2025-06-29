@@ -217,6 +217,49 @@ export default function Home() {
           <SkillSection title="Web Technologies" items={webTech} index={3} />
         </section>
 
+        {/* Notable Career Projects */}
+        <section className="mb-12">
+          <h2 className="text-2xl font-bold mb-6 text-gray-900">
+            Notable Career Projects
+          </h2>
+          <AnimatedSection className="bg-white rounded-lg shadow-lg p-6 space-y-8">
+            {/* Project 1 */}
+            <div>
+              <h3 className="text-xl font-bold text-emerald-700 mb-1">
+                My Scheme Updates (MySU){" "}
+                <span className="text-gray-500 font-normal">(2024)</span>
+              </h3>
+              <p className="text-gray-700 mb-1">
+                <span className="font-semibold">Description:</span> Angular site
+                designed to allow pension fund managers to administrate schemes
+                and contributions data.
+              </p>
+              <p className="text-gray-700">
+                <span className="font-semibold">Role:</span> I successfully
+                rewrote a fledgling framework from the ground up using
+                Playwright. This turned around the quality of the product and
+                ensured testing was mostly fully automated.
+              </p>
+            </div>
+            {/* Project 2 */}
+            <div>
+              <h3 className="text-xl font-bold text-emerald-700 mb-1">
+                Data Productivity Cloud (DPC){" "}
+                <span className="text-gray-500 font-normal">(2022-2023)</span>
+              </h3>
+              <p className="text-gray-700 mb-1">
+                <span className="font-semibold">Description:</span> A SaaS based
+                ETL solution built in React frontend.
+              </p>
+              <p className="text-gray-700">
+                <span className="font-semibold">Role:</span> I acted as the
+                Senior SDET and built a testing framework from scratch covering
+                all functional areas of the site using Cypress.
+              </p>
+            </div>
+          </AnimatedSection>
+        </section>
+
         {/* Experience */}
         <section className="mb-12">
           <h2 className="text-2xl font-bold mb-6 text-gray-900">
