@@ -1,11 +1,26 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import { AnimatedSection } from "./AnimatedSection";
 
 export default function Header() {
+  const [isSticky, setIsSticky] = useState(true);
+
+  useEffect(() => {
+    // Disable sticky on mobile (width < 640px)
+    const checkSticky = () => {
+      setIsSticky(window.innerWidth >= 640);
+    };
+    checkSticky();
+    window.addEventListener("resize", checkSticky);
+    return () => window.removeEventListener("resize", checkSticky);
+  }, []);
+
   return (
-    <header className="sticky top-0 left-0 right-0 z-50 relative w-full bg-gray-900 text-white py-6 overflow-hidden shadow-lg">
+    <header
+      className={`${isSticky ? "sticky top-0" : "relative"} left-0 right-0 z-50 w-full bg-gray-900 text-white py-6 overflow-hidden shadow-lg`}
+    >
       {/* Background image */}
       <div className="absolute inset-0 w-full h-full z-0">
         <Image
@@ -36,13 +51,11 @@ export default function Header() {
           </h2>
           <br />
           <br />
-          <br />
-          <br />
           <div className="mt-4 text-gray-400">
             <p className="mt-2 flex flex-col sm:flex-row gap-2 sm:gap-4 justify-center md:justify-start items-center">
               <a
                 href="mailto:martin_poole@hotmail.com"
-                className="text-lg md:text-xl font-semibold text-emerald-400 hover:text-emerald-300 transition-colors underline drop-shadow"
+                className="text-2xl md:text-3xl font-bold text-emerald-400 hover:text-emerald-300 transition-colors underline drop-shadow"
               >
                 Contact Me
               </a>
@@ -50,7 +63,7 @@ export default function Header() {
                 href="https://www.linkedin.com/in/martin-poole-6b9b762b/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-lg md:text-xl font-semibold text-emerald-400 hover:text-emerald-300 transition-colors underline drop-shadow"
+                className="text-2xl md:text-3xl font-bold text-emerald-400 hover:text-emerald-300 transition-colors underline drop-shadow"
               >
                 LinkedIn
               </a>
