@@ -238,8 +238,8 @@ export default function Home() {
                 <span className="text-gray-500 font-normal">(2024)</span>
               </h3>
               <p className="text-gray-700 mb-1">
-                <span className="font-semibold">Description:</span> Angular site
-                designed to allow pension fund managers to administrate schemes
+                <span className="font-semibold">Description:</span> Angular based
+                site designed to allow pension fund managers to administrate schemes
                 and contributions data.
               </p>
               <p className="text-gray-700">
