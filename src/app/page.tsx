@@ -190,7 +190,7 @@ export default function Home() {
             About Martin
           </h2>
           <p className="text-gray-700 text-lg leading-relaxed">
-            A Lead SDET / Quality Engineer with over 12 years&apos; commercial
+            A Lead Quality Engineer / SDET with over 12 years&apos; commercial
             experience designing, implementing, and maintaining both UI and API
             based automation frameworks from scratch for large scale greenfield
             projects. A code-focused technical tester, with extensive experience
