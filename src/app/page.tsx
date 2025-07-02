@@ -246,7 +246,9 @@ export default function Home() {
                 <span className="font-semibold">Role:</span> I successfully
                 rewrote a fledgling framework from the ground up using
                 Playwright. This turned around the quality of the product and
-                ensured testing was mostly fully automated.
+                ensured testing was mostly fully automated. It changed the culture
+                around testing within the team, fostering a greater appreciation for
+                quality and encouraging more developers to take ownership of testing.
               </p>
             </div>
             {/* Project 2 */}
@@ -257,12 +259,13 @@ export default function Home() {
               </h3>
               <p className="text-gray-700 mb-1">
                 <span className="font-semibold">Description:</span> A SaaS based
-                ETL solution built in React frontend.
+                ETL solution built in a React frontend.
               </p>
               <p className="text-gray-700">
                 <span className="font-semibold">Role:</span> I acted as the
                 Senior SDET and built a testing framework from scratch covering
-                all functional areas of the site using Cypress.
+                all functional areas of the site using Cypress. This included
+                visual testing, accessibility testing, and mocking capabilities.
               </p>
             </div>
           </AnimatedSection>
