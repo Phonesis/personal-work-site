@@ -6,9 +6,9 @@ import { Analytics } from "@vercel/analytics/next";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Martin Poole - Test Automation Specialist / Lead Quality Engineer",
+  title: "Martin Poole - Lead Quality Engineer / Test Automation Specialist",
   description:
-    "Test Automation Specialist / Lead Quality Engineer with over 12 years of commercial experience.",
+    "Lead Quality Engineer / SDET / Test Automation Specialist with over 12 years of commercial experience.",
 };
 
 export default function RootLayout({

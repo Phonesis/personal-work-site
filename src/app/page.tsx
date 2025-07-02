@@ -61,7 +61,7 @@ export default function Home() {
 
   const experiences = [
     {
-      title: "Automation Test Lead",
+      title: "Automation Test Lead / Lead Quality Engineer",
       company: "Legal & General",
       period: "October 2023 – Present",
       location: "Hove / London / Cardiff / Remote – UK",
@@ -69,6 +69,7 @@ export default function Home() {
         "Playwright",
         "Cucumber",
         "GitHub Actions",
+        "Azure DevOps",
         "Applitools",
         "TypeScript/JavaScript",
       ],
