@@ -238,17 +238,18 @@ export default function Home() {
                 <span className="text-gray-500 font-normal">(2024)</span>
               </h3>
               <p className="text-gray-700 mb-1">
-                <span className="font-semibold">Description:</span> Angular based
-                site designed to allow pension fund managers to administrate schemes
-                and contributions data.
+                <span className="font-semibold">Description:</span> Angular
+                based site designed to allow pension fund managers to
+                administrate schemes and contributions data.
               </p>
               <p className="text-gray-700">
                 <span className="font-semibold">Role:</span> I successfully
                 rewrote a fledgling framework from the ground up using
                 Playwright. This turned around the quality of the product and
-                ensured testing was mostly fully automated. It changed the culture
-                around testing within the team, fostering a greater appreciation for
-                quality and encouraging more developers to take ownership of testing.
+                ensured testing was mostly fully automated. It changed the
+                culture around testing within the team, fostering a greater
+                appreciation for quality and encouraging more developers to take
+                ownership of testing.
               </p>
             </div>
             {/* Project 2 */}
@@ -266,6 +267,27 @@ export default function Home() {
                 Senior SDET and built a testing framework from scratch covering
                 all functional areas of the site using Cypress. This included
                 visual testing, accessibility testing, and mocking capabilities.
+                I also designed and implemented a load testing framework using
+                K6 and integrated it into a CI pipeline.
+              </p>
+            </div>
+            {/* Project 3 */}
+            <div>
+              <h3 className="text-xl font-bold text-emerald-700 mb-1">
+                Manage Your Account (MYA){" "}
+                <span className="text-gray-500 font-normal">(2018-2021)</span>
+              </h3>
+              <p className="text-gray-700 mb-1">
+                <span className="font-semibold">Description:</span> A customer
+                facing Angular based web application for managing pension
+                accounts and contributions.
+              </p>
+              <p className="text-gray-700">
+                <span className="font-semibold">Role:</span> I designed and
+                implemented a comprehensive testing strategy that included unit,
+                integration, and end-to-end tests. This included automated
+                penetration testing with OWASP ZAP and load testing using
+                JMeter.
               </p>
             </div>
           </AnimatedSection>

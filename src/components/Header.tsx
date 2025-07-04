@@ -47,7 +47,7 @@ export default function Header() {
         <AnimatedSection className="text-center md:text-left w-full">
           <h1 className="text-4xl md:text-5xl font-bold mb-2">Martin Poole</h1>
           <h2 className="text-xl md:text-2xl text-gray-300">
-            Lead Quality Engineer / Test Automation Specialist
+            Lead Quality Engineer / SDET
           </h2>
           <br />
           <br />
