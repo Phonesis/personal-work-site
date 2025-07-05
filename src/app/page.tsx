@@ -194,12 +194,13 @@ export default function Home() {
             About Martin
           </h2>
           <p className="text-gray-700 text-lg leading-relaxed">
-            A Lead Quality Engineer / SDET with over 12 years&apos; commercial
-            experience designing, implementing, and maintaining both UI and API
-            based automation frameworks from scratch for large scale greenfield
-            projects. A code-focused technical tester, with extensive experience
-            in the usage of Cypress, Playwright, and Selenium WebDriver to build
-            automated tests within Node.js / Java / .NET environments.
+            A certified Lead Quality Engineer / SDET with over 12 years&apos;
+            commercial experience designing, implementing, and maintaining both
+            UI and API based automation frameworks from scratch for large scale
+            greenfield projects. A code-focused technical tester, with extensive
+            experience in the usage of Playwright, Cypress, and Selenium
+            WebDriver to build automated tests within Node.js / Java / .NET
+            environments.
           </p>
           <p className="text-gray-700 text-lg leading-relaxed mt-4">
             Strong level of experience training, managing, and mentoring junior
@@ -241,8 +242,8 @@ export default function Home() {
                 </button>
                 <div className="flex-1 flex flex-col items-center sm:items-start">
                   <p className="text-gray-100 text-lg font-semibold mb-2 text-center sm:text-left">
-                    Check out my latest post on LinkedIn about advanced
-                    Playwright techniques
+                    Check out my latest post on LinkedIn about some advanced
+                    Playwright techniques I&apos;ve recently been working on
                   </p>
                   <a
                     href="https://www.linkedin.com/feed/update/urn:li:activity:7346988033499430912/"

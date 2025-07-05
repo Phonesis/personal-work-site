@@ -8,13 +8,25 @@ export default function Header() {
   const [isSticky, setIsSticky] = useState(true);
 
   useEffect(() => {
-    // Disable sticky on mobile (width < 640px)
+    // Disable sticky on mobile (width < 640px) or if device is in landscape and is mobile
     const checkSticky = () => {
-      setIsSticky(window.innerWidth >= 640);
+      const isMobile = window.innerWidth < 640;
+      // Try to detect landscape mode on mobile
+      const isLandscape = window.matchMedia("(orientation: landscape)").matches;
+      // If mobile and landscape, disable sticky
+      setIsSticky(
+        !(isMobile && isLandscape) && !isMobile
+          ? true
+          : !(isMobile && isLandscape),
+      );
     };
     checkSticky();
     window.addEventListener("resize", checkSticky);
-    return () => window.removeEventListener("resize", checkSticky);
+    window.addEventListener("orientationchange", checkSticky);
+    return () => {
+      window.removeEventListener("resize", checkSticky);
+      window.removeEventListener("orientationchange", checkSticky);
+    };
   }, []);
 
   return (
@@ -45,29 +57,41 @@ export default function Header() {
           />
         </div>
         <AnimatedSection className="text-center md:text-left w-full">
-          <h1 className="text-4xl md:text-5xl font-bold mb-2">Martin Poole</h1>
-          <h2 className="text-xl md:text-2xl text-gray-300">
+          <h1 className="text-4xl md:text-5xl font-bold mb-2" itemProp="name">
+            Martin Poole
+          </h1>
+          <p className="text-xl md:text-2xl text-gray-300" itemProp="jobTitle">
             Lead Quality Engineer / SDET
-          </h2>
+          </p>
           <br />
           <br />
           <div className="mt-4 text-gray-400">
-            <p className="mt-2 flex flex-col sm:flex-row gap-2 sm:gap-4 justify-center md:justify-start items-center">
-              <a
-                href="mailto:martin_poole@hotmail.com"
-                className="text-2xl md:text-3xl font-bold text-emerald-400 hover:text-emerald-300 transition-colors underline drop-shadow"
-              >
-                Contact Me
-              </a>
-              <a
-                href="https://www.linkedin.com/in/martin-poole-6b9b762b/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-2xl md:text-3xl font-bold text-emerald-400 hover:text-emerald-300 transition-colors underline drop-shadow"
-              >
-                LinkedIn
-              </a>
-            </p>
+            <ul
+              className="mt-2 flex flex-col sm:flex-row gap-2 sm:gap-4 justify-center md:justify-start items-center"
+              aria-label="Contact links"
+            >
+              <li>
+                <a
+                  href="mailto:martin_poole@hotmail.com"
+                  className="text-2xl md:text-3xl font-bold text-emerald-400 hover:text-emerald-300 transition-colors underline drop-shadow"
+                  itemProp="email"
+                >
+                  Contact Me
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://www.linkedin.com/in/martin-poole-6b9b762b/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-2xl md:text-3xl font-bold text-emerald-400 hover:text-emerald-300 transition-colors underline drop-shadow"
+                  itemProp="sameAs"
+                  aria-label="Martin Poole on LinkedIn"
+                >
+                  LinkedIn
+                </a>
+              </li>
+            </ul>
           </div>
         </AnimatedSection>
       </div>
