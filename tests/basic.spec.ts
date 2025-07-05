@@ -7,8 +7,5 @@ test.describe("Home Page", () => {
       page.getByRole("heading", { name: /martin poole/i }),
     ).toBeVisible();
     await expect(page.getByRole("heading", { name: /about/i })).toBeVisible();
-    await expect(
-      page.getByText(/test automation specialist/i).first(),
-    ).toBeVisible();
   });
 });

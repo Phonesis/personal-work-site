@@ -1,9 +1,13 @@
+"use client";
 import Header from "@/components/Header";
 import ExperienceItem from "@/components/ExperienceItem";
 import SkillSection from "@/components/SkillSection";
 import { AnimatedSection } from "@/components/AnimatedSection";
+import Image from "next/image";
+import { useState } from "react";
 
 export default function Home() {
+  const [showModal, setShowModal] = useState(false);
   const programmingLanguages = [
     { name: "JavaScript/TypeScript", level: 9 },
     { name: "Java", level: 3 },
@@ -180,7 +184,7 @@ export default function Home() {
   ];
 
   return (
-    <main className="min-h-screen bg-gray-100">
+    <main className="min-h-screen bg-gray-100" tabIndex={-1}>
       <Header />
 
       <div className="container mx-auto px-4 py-12">
@@ -203,6 +207,84 @@ export default function Home() {
             processes.
           </p>
         </AnimatedSection>
+
+        {/* LinkedIn Posts */}
+        <section className="mb-12">
+          <h2 className="text-2xl font-bold mb-6 text-gray-900">
+            Latest LinkedIn Posts
+          </h2>
+          <AnimatedSection className="bg-gray-800 rounded-lg shadow-lg p-6 flex flex-col items-center">
+            <div className="w-full max-w-xl flex flex-col items-center">
+              <div className="w-full flex flex-col sm:flex-row items-center gap-4">
+                <button
+                  type="button"
+                  aria-label="Enlarge LinkedIn post preview"
+                  className="w-full sm:w-1/2 focus:outline-none focus-visible:ring-4 focus-visible:ring-emerald-400"
+                  onClick={() => setShowModal(true)}
+                  style={{ background: "none", border: "none", padding: 0 }}
+                  tabIndex={0}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter" || e.key === " ") {
+                      setShowModal(true);
+                    }
+                  }}
+                >
+                  <Image
+                    src="/linkedin-post-preview.png"
+                    alt="LinkedIn post preview. Click to enlarge."
+                    width={400}
+                    height={180}
+                    className="rounded-lg border border-gray-200 w-full object-contain bg-black"
+                    style={{ minHeight: "120px", maxHeight: "220px" }}
+                    priority
+                  />
+                </button>
+                <div className="flex-1 flex flex-col items-center sm:items-start">
+                  <p className="text-gray-100 text-lg font-semibold mb-2 text-center sm:text-left">
+                    Check out my latest post on LinkedIn about advanced
+                    Playwright techniques
+                  </p>
+                  <a
+                    href="https://www.linkedin.com/feed/update/urn:li:activity:7346988033499430912/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-block px-6 py-2 mt-2 bg-emerald-600 text-white font-bold rounded shadow hover:bg-emerald-700 transition-colors text-lg"
+                  >
+                    View on LinkedIn
+                  </a>
+                </div>
+              </div>
+            </div>
+            <p className="text-gray-400 text-sm mt-4 text-center"></p>
+            {/* Modal overlay for enlarged image */}
+            {showModal && (
+              <div
+                className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-80 cursor-zoom-out transition-opacity duration-200"
+                onClick={() => setShowModal(false)}
+                aria-modal="true"
+                role="dialog"
+                tabIndex={-1}
+                aria-label="Enlarged LinkedIn post preview. Click anywhere to close."
+                onKeyDown={(e) => {
+                  if (e.key === "Escape") setShowModal(false);
+                }}
+              >
+                <Image
+                  src="/linkedin-post-preview.png"
+                  alt="Enlarged LinkedIn post preview. Click anywhere to close."
+                  width={800}
+                  height={360}
+                  className="rounded-lg border-4 border-white shadow-2xl max-w-full max-h-[80vh] object-contain bg-black"
+                  style={{ background: "black" }}
+                  priority
+                />
+                <span className="sr-only">
+                  Click anywhere to close the enlarged image.
+                </span>
+              </div>
+            )}
+          </AnimatedSection>
+        </section>
 
         {/* Skills */}
         <section className="mb-12">
@@ -343,7 +425,9 @@ export default function Home() {
 
         {/* Interests */}
         <section>
-          <h2 className="text-2xl font-bold mb-6 text-gray-900">Interests</h2>
+          <h2 className="text-2xl font-bold mb-6 text-gray-900">
+            Personal Interests
+          </h2>
           <AnimatedSection className="bg-white rounded-lg shadow-lg p-6">
             <ul className="grid grid-cols-2 md:grid-cols-3 gap-4 text-gray-700">
               <li>• Programming / website development</li>
