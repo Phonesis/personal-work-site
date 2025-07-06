@@ -8,17 +8,16 @@ export default function Header() {
   const [isSticky, setIsSticky] = useState(true);
 
   useEffect(() => {
-    // Disable sticky on mobile (width < 640px) or if device is in landscape and is mobile
+    // Disable sticky on all mobile devices (width < 640px) and on any device in landscape with small height
     const checkSticky = () => {
       const isMobile = window.innerWidth < 640;
-      // Try to detect landscape mode on mobile
       const isLandscape = window.matchMedia("(orientation: landscape)").matches;
-      // If mobile and landscape, disable sticky
-      setIsSticky(
-        !(isMobile && isLandscape) && !isMobile
-          ? true
-          : !(isMobile && isLandscape),
-      );
+      // If mobile or (landscape and height is small), disable sticky
+      if (isMobile || (isLandscape && window.innerHeight < 500)) {
+        setIsSticky(false);
+      } else {
+        setIsSticky(true);
+      }
     };
     checkSticky();
     window.addEventListener("resize", checkSticky);
