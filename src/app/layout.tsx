@@ -7,14 +7,14 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title:
-    "Martin Poole - Lead Quality Engineer / SDET | Test Automation Specialist",
+    "Martin Poole - Lead Quality Engineer / SDET",
   description:
-    "Martin Poole is a certified Lead Quality Engineer, SDET, and Test Automation Specialist with 12+ years of experience in Playwright, Cypress, Selenium, and modern CI/CD. Explore skills, projects, and contact info.",
+    "Martin Poole is a certified Lead Quality Engineer / SDET with 12+ years of experience in Playwright, Cypress, Selenium, and modern CI/CD. Explore skills, projects, and contact info.",
   openGraph: {
     title:
-      "Martin Poole - Lead Quality Engineer / SDET | Test Automation Specialist",
+      "Martin Poole - Lead Quality Engineer / SDET",
     description:
-      "Martin Poole is a certified Lead Quality Engineer, SDET, and Test Automation Specialist with 12+ years of experience in Playwright, Cypress, Selenium, and modern CI/CD. Explore skills, projects, and contact info.",
+      "Martin Poole is a certified Lead Quality Engineer / SDET with 12+ years of experience in Playwright, Cypress, Selenium, and modern CI/CD. Explore skills, projects, and contact info.",
     url: "https://martinpoole.cv/",
     siteName: "Martin Poole's Work Portfolio",
     images: [
