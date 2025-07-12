@@ -65,7 +65,7 @@ export default function Home() {
 
   const experiences = [
     {
-      title: "Automation Test Lead / Lead Quality Engineer",
+      title: "Lead Quality Engineer",
       company: "Legal & General",
       period: "October 2023 – Present",
       location: "Hove / London / Cardiff / Remote – UK",
@@ -84,7 +84,7 @@ export default function Home() {
         "Incorporating Applitools integration for automated visual regression testing for department wide usage across several large UI based projects.",
         "Introducing a Playwright based API testing framework for regression testing activities which exposed multiple defects with GraphQL endpoints. Also used as a basis for a load test framework.",
         "Running regular training sessions and taking part in a 2024 testing conference where I ran a well-received session on Playwright usage.",
-        "Leveraging AI (GPT, Claude 3.5/3.7) with GitHub Copilot to enhance and speed up the process of generating tests. Training others to work with AI to maximise their test coverage.",
+        "Leveraging AI Agents (GPT, Claude, Gemini) and MCP with GitHub Copilot to enhance and speed up the process of generating tests. Training others to work with AI to maximise their test coverage.",
         "Acting as a lead on a highly complex regulatory project overseeing the work of a team of graduates to ensure best practices adhered to within a large Playwright based framework.",
       ],
     },
