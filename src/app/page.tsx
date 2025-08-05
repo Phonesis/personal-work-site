@@ -383,6 +383,49 @@ export default function Home() {
           </AnimatedSection>
         </section>
 
+        {/* Personal Web Development Projects */}
+        <section className="mb-12">
+          <h2 className="text-2xl font-bold mb-6 text-gray-900">
+            Personal Web Development Projects
+          </h2>
+          <AnimatedSection className="bg-white rounded-lg shadow-lg p-6">
+            <div>
+              <h3 className="text-xl font-bold text-emerald-700 mb-3">
+                Life with MND{" "}
+                <span className="text-gray-500 font-normal">(2025)</span>
+              </h3>
+              <p className="text-gray-700 mb-4 leading-relaxed">
+                A personal website I designed and developed for my sister, who
+                was diagnosed with Motor Neurone Disease in 2022. The site
+                provides a platform for her to share her poetry covering the
+                daily challenges and experiences of living with MND.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 items-start">
+                <div className="flex-1">
+                  <p className="text-gray-700 mb-2">
+                    <span className="font-semibold">Technologies:</span>{" "}
+                    Next.js, Tailwind CSS, React, TypeScript, Node.js
+                  </p>
+                  <p className="text-gray-700">
+                    <span className="font-semibold">Features:</span> Clean,
+                    accessible design focused on readability, mobile-responsive
+                    layout, and easy content management for sharing poetry and
+                    personal reflections.
+                  </p>
+                </div>
+                <a
+                  href="https://www.lifewithmnd.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block px-6 py-3 bg-emerald-600 text-white font-bold rounded shadow hover:bg-emerald-700 transition-colors"
+                >
+                  Visit Site
+                </a>
+              </div>
+            </div>
+          </AnimatedSection>
+        </section>
+
         {/* Experience */}
         <section className="mb-12">
           <h2 className="text-2xl font-bold mb-6 text-gray-900">
