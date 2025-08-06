@@ -206,7 +206,7 @@ export default function Home() {
             Passionate about the usage of AI in testing and automation, I
             regularly leverage AI Agents (GPT, Claude, Gemini) and MCP with
             GitHub Copilot to enhance and speed up the process of generating
-            test and training others to work with AI to maximise their test
+            tests and training others to work with AI to maximise their test
             coverage.
           </p>
           <p className="text-gray-700 text-lg leading-relaxed mt-4">
