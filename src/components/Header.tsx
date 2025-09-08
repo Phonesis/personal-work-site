@@ -6,6 +6,7 @@ import { AnimatedSection } from "./AnimatedSection";
 
 export default function Header() {
   const [isSticky, setIsSticky] = useState(true);
+  const [showProfileModal, setShowProfileModal] = useState(false);
 
   useEffect(() => {
     // Disable sticky on all mobile devices (width < 640px) and on any device in landscape with small height
@@ -46,14 +47,28 @@ export default function Header() {
       {/* Foreground content */}
       <div className="relative z-10 container mx-auto px-4 flex flex-col md:flex-row items-center md:items-start gap-6">
         <div className="flex-shrink-0 flex justify-center md:justify-start w-full md:w-auto">
-          <Image
-            src="/profile.jpeg"
-            alt="Martin Poole profile photo"
-            width={120}
-            height={120}
-            className="rounded-full border-4 border-gray-700 shadow-lg bg-white/80"
-            priority
-          />
+          <button
+            type="button"
+            aria-label="Enlarge profile picture"
+            className="focus:outline-none focus-visible:ring-4 focus-visible:ring-emerald-400"
+            onClick={() => setShowProfileModal(true)}
+            style={{ background: "none", border: "none", padding: 0 }}
+            tabIndex={0}
+            onKeyDown={(e) => {
+              if (e.key === "Enter" || e.key === " ") {
+                setShowProfileModal(true);
+              }
+            }}
+          >
+            <Image
+              src="/profile.jpeg"
+              alt="Martin Poole profile photo"
+              width={120}
+              height={120}
+              className="rounded-full border-4 border-gray-700 shadow-lg bg-white/80"
+              priority
+            />
+          </button>
         </div>
         <AnimatedSection className="text-center md:text-left w-full">
           <h1 className="text-4xl md:text-5xl font-bold mb-2" itemProp="name">
@@ -95,6 +110,32 @@ export default function Header() {
         </AnimatedSection>
       </div>
       <div className="absolute inset-0 w-full h-full bg-gradient-to-b from-gray-900/80 to-transparent z-0 pointer-events-none" />
+      {/* Modal overlay for enlarged profile picture */}
+      {showProfileModal && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-80 cursor-zoom-out transition-opacity duration-200"
+          onClick={() => setShowProfileModal(false)}
+          aria-modal="true"
+          role="dialog"
+          tabIndex={-1}
+          aria-label="Enlarged profile picture. Click anywhere to close."
+          onKeyDown={(e) => {
+            if (e.key === "Escape") setShowProfileModal(false);
+          }}
+        >
+          <Image
+            src="/profile.jpeg"
+            alt="Enlarged profile picture. Click anywhere to close."
+            width={400}
+            height={400}
+            className="rounded-lg border-4 border-white shadow-2xl max-w-full max-h-[80vh] object-contain"
+            priority
+          />
+          <span className="sr-only">
+            Click anywhere to close the enlarged image.
+          </span>
+        </div>
+      )}
     </header>
   );
 }
