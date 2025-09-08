@@ -324,6 +324,28 @@ export default function Home() {
             {/* Project 1 */}
             <div>
               <h3 className="text-xl font-bold text-emerald-700 mb-1">
+                Retail Annuities - Agile Release Train (RA-ART)
+                <span className="text-gray-500 font-normal">(2025)</span>
+              </h3>
+              <p className="text-gray-700 mb-1">
+                <span className="font-semibold">Description:</span> A
+                modernisation project with a scope to upgrade several core
+                applications used by a large financial company for driving their
+                annuities business. Applications were a mix of Angular based
+                front ends and REST based endpoints.
+              </p>
+              <p className="text-gray-700">
+                <span className="font-semibold">Role:</span> Acting as a Lead
+                Quality Engineer overseeing a large team of engineers tasked
+                with developing an automation framework from scratch supporting
+                multiple applications and service layers. Introduced MCP and
+                Agent usage to speed up creation of tests and encourage AI
+                utilisation where appropriate.
+              </p>
+            </div>
+            {/* Project 2 */}
+            <div>
+              <h3 className="text-xl font-bold text-emerald-700 mb-1">
                 My Scheme Updates (MySU){" "}
                 <span className="text-gray-500 font-normal">(2024)</span>
               </h3>
@@ -342,7 +364,7 @@ export default function Home() {
                 ownership of testing.
               </p>
             </div>
-            {/* Project 2 */}
+            {/* Project 3 */}
             <div>
               <h3 className="text-xl font-bold text-emerald-700 mb-1">
                 Data Productivity Cloud (DPC){" "}
@@ -361,7 +383,7 @@ export default function Home() {
                 K6 and integrated it into a CI pipeline.
               </p>
             </div>
-            {/* Project 3 */}
+            {/* Project 4 */}
             <div>
               <h3 className="text-xl font-bold text-emerald-700 mb-1">
                 Manage Your Account (MYA){" "}
