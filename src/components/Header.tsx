@@ -60,7 +60,7 @@ export default function Header() {
             Martin Poole
           </h1>
           <p className="text-xl md:text-2xl text-gray-300" itemProp="jobTitle">
-            Lead Quality Engineer / SDET
+            Lead Quality Engineer
           </p>
           <br />
           <br />

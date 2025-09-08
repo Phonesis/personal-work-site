@@ -6,13 +6,13 @@ import { Analytics } from "@vercel/analytics/next";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Martin Poole - Lead Quality Engineer / SDET",
+  title: "Martin Poole - Lead Quality Engineer",
   description:
-    "Martin Poole is a certified Lead Quality Engineer / SDET with 12+ years of experience in Playwright, Cypress, Selenium, and modern CI/CD. Explore skills, projects, and contact info.",
+    "Martin Poole is a certified Lead Quality Engineer with 12+ years of experience in Playwright, Cypress, Selenium, and modern CI/CD. Explore skills, projects, and contact info.",
   openGraph: {
-    title: "Martin Poole - Lead Quality Engineer / SDET",
+    title: "Martin Poole - Lead Quality Engineer",
     description:
-      "Martin Poole is a certified Lead Quality Engineer / SDET with 12+ years of experience in Playwright, Cypress, Selenium, and modern CI/CD. Explore skills, projects, and contact info.",
+      "Martin Poole is a certified Lead Quality Engineer with 12+ years of experience in Playwright, Cypress, Selenium, and modern CI/CD. Explore skills, projects, and contact info.",
     url: "https://martinpoole.cv/",
     siteName: "Martin Poole's Work Portfolio",
     images: [

@@ -1,10 +1,10 @@
 export default function Head() {
   return (
     <>
-      <title>Martin Poole - Lead Quality Engineer / SDET</title>
+      <title>Martin Poole - Lead Quality Engineer</title>
       <meta
         name="description"
-        content="Martin Poole is a certified Lead Quality Engineer / SDET with 12+ years of experience in Playwright, Cypress, Selenium, and modern CI/CD. Explore skills, projects, and contact info."
+        content="Martin Poole is a certified Lead Quality Engineer with 12+ years of experience in Playwright, Cypress, Selenium, and modern CI/CD. Explore skills, projects, and contact info."
       />
       <meta name="viewport" content="width=device-width, initial-scale=1" />
       <meta charSet="utf-8" />
