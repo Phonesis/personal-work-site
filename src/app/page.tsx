@@ -63,6 +63,15 @@ export default function Home() {
     { name: "Vue.js" },
   ];
 
+  const aiTools = [
+    { name: "GitHub Copilot" },
+    { name: "Claude Sonnet 4" },
+    { name: "GPT-5" },
+    { name: "Gemini 2.5" },
+    { name: "MCP (Playwright)" },
+    { name: "GitHub Coding Agents" },
+  ];
+
   const experiences = [
     {
       title: "Lead Quality Engineer",
@@ -313,6 +322,11 @@ export default function Home() {
             index={2}
           />
           <SkillSection title="Web Technologies" items={webTech} index={3} />
+          <SkillSection
+            title="AI Tools and Agentic Models"
+            items={aiTools}
+            index={4}
+          />
         </section>
 
         {/* Notable Career Projects */}
