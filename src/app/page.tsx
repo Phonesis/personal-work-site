@@ -488,6 +488,13 @@ export default function Home() {
             <div className="space-y-4">
               <div>
                 <h4 className="font-semibold text-gray-900">
+                  AIOps - Foundation Level
+                </h4>
+                <p className="text-gray-600">DevOps Institute</p>
+                <p className="text-gray-500">October 2025</p>
+              </div>
+              <div>
+                <h4 className="font-semibold text-gray-900">
                   ISTQB - Certified Tester Advanced Level
                 </h4>
                 <p className="text-gray-600">
