@@ -62,10 +62,10 @@ export default function Home() {
 
   const aiTools = [
     { name: "GitHub Copilot" },
-    { name: "Claude Sonnet 4" },
+    { name: "Claude Sonnet / Opus" },
     { name: "GPT-5" },
-    { name: "Gemini 2.5" },
-    { name: "MCP (Playwright)" },
+    { name: "Gemini Pro / Flash" },
+    { name: "MCP (Playwright, Chrome, Jira)" },
     { name: "GitHub Coding Agents" },
   ];
 
@@ -81,6 +81,7 @@ export default function Home() {
         "GitHub Actions",
         "Azure DevOps",
         "Applitools",
+        "Percy",
         "TypeScript/JavaScript",
       ],
       responsibilities: [
@@ -200,13 +201,13 @@ export default function Home() {
             About Martin
           </h2>
           <p className="text-gray-700 text-lg leading-relaxed">
-            A certified Lead Quality Engineer with over 12 years&apos;
-            commercial experience designing, implementing, and maintaining both
-            UI and API based automation frameworks from scratch for large scale
-            greenfield projects. A code-focused technical tester, with extensive
-            experience in the usage of Playwright, Cypress, and Selenium
-            WebDriver to build automated tests within Node.js / Java / .NET
-            environments.
+            An ISTQB CTAL–TAE certified Lead Quality Engineer with over 12
+            years&apos; commercial experience designing, implementing, and
+            maintaining both UI and API based automation frameworks from scratch
+            for large scale greenfield projects. A code-focused technical
+            tester, with extensive experience in the usage of Playwright,
+            Cypress, and Selenium WebDriver to build automated tests within
+            Node.js / Java / .NET environments.
           </p>
           <p className="text-gray-700 text-lg leading-relaxed mt-4">
             Passionate about the usage of AI in testing and automation, I
@@ -257,11 +258,7 @@ export default function Home() {
             index={2}
           />
           <SkillSection title="Web Technologies" items={webTech} index={3} />
-          <SkillSection
-            title="AI Tools and Agentic Models"
-            items={aiTools}
-            index={4}
-          />
+          <SkillSection title="AI Tools and LLMs" items={aiTools} index={4} />
         </section>
 
         {/* Notable Career Projects */}
@@ -271,6 +268,32 @@ export default function Home() {
           </h2>
           <AnimatedSection className="bg-white rounded-lg shadow-lg p-6 space-y-8">
             {/* Project 1 */}
+            <div>
+              <h3 className="text-xl font-bold text-emerald-700 mb-1">
+                Playwright Test Results Dashboard
+                <span className="text-gray-500 font-normal">(2025)</span>
+              </h3>
+              <p className="text-gray-700 mb-1">
+                <span className="font-semibold">Description:</span> Utlised
+                agents to partially prompt engineer a bespoke reporting website
+                using Playwright&apos;s JSON output feature to gather metrics
+                and test execution trends. Site uses Git remote fetches and
+                commits in multiple CI systems to log test results to a
+                centralised repository. A front end then displays the metrics
+                along with trends and info on root causes around failures etc.
+                The site ended up being used by multiple projects and
+                departments within L&G and completely removed any need to
+                purchase third party reporting solutions.
+              </p>
+              <p className="text-gray-700">
+                <span className="font-semibold">Role:</span> I developed the
+                site from the ground up, utilising agents to assist with the
+                complex JSON parsing and metrics calculation logic. As part of
+                the development, I had to also thoroughly test the solution and
+                role out features iteratively.
+              </p>
+            </div>
+            {/* Project 2 */}
             <div>
               <h3 className="text-xl font-bold text-emerald-700 mb-1">
                 Retail Annuities - Agile Release Train (RA-ART)
@@ -292,7 +315,7 @@ export default function Home() {
                 utilisation where appropriate.
               </p>
             </div>
-            {/* Project 2 */}
+            {/* Project 3 */}
             <div>
               <h3 className="text-xl font-bold text-emerald-700 mb-1">
                 My Scheme Updates (MySU){" "}
@@ -313,7 +336,7 @@ export default function Home() {
                 ownership of testing.
               </p>
             </div>
-            {/* Project 3 */}
+            {/* Project 4 */}
             <div>
               <h3 className="text-xl font-bold text-emerald-700 mb-1">
                 Data Productivity Cloud (DPC){" "}
@@ -332,7 +355,7 @@ export default function Home() {
                 K6 and integrated it into a CI pipeline.
               </p>
             </div>
-            {/* Project 4 */}
+            {/* Project 5 */}
             <div>
               <h3 className="text-xl font-bold text-emerald-700 mb-1">
                 Manage Your Account (MYA){" "}
@@ -415,7 +438,7 @@ export default function Home() {
           <AnimatedSection className="bg-white rounded-lg shadow-lg p-6">
             <div className="mb-6">
               <h3 className="text-xl font-bold text-gray-900">
-                Law Degree LL.B. (HONS)
+                Law Degree LLB (Hons)
               </h3>
               <p className="text-gray-600">University of Sussex</p>
               <p className="text-gray-500">October 2005 – July 2008</p>
@@ -433,7 +456,7 @@ export default function Home() {
                   ISTQB - Certified Tester Advanced Level
                 </h4>
                 <p className="text-gray-600">
-                  Test Automation Engineer (CTAL – TAE)
+                  Test Automation Engineer (CTAL–TAE)
                 </p>
                 <p className="text-gray-500">
                   BCS (The Chartered Institute for IT) - September 2024
