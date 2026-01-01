@@ -274,7 +274,7 @@ export default function Home() {
                 <span className="text-gray-500 font-normal">(2025)</span>
               </h3>
               <p className="text-gray-700 mb-1">
-                <span className="font-semibold">Description:</span> Utlised
+                <span className="font-semibold">Description:</span> Utilised
                 agents to partially prompt engineer a bespoke reporting website
                 using Playwright&apos;s JSON output feature to gather metrics
                 and test execution trends. Site uses Git remote fetches and
@@ -286,11 +286,11 @@ export default function Home() {
                 purchase third party reporting solutions.
               </p>
               <p className="text-gray-700">
-                <span className="font-semibold">Role:</span> I developed the
-                site from the ground up, utilising agents to assist with the
-                complex JSON parsing and metrics calculation logic. As part of
-                the development, I had to also thoroughly test the solution and
-                role out features iteratively.
+                <span className="font-semibold">Role:</span> I devised and
+                developed the site from the ground up, utilising agents to
+                assist with the complex JSON parsing and metrics calculation
+                logic. As part of the development, I also thoroughly test the
+                solution and rolled new features out iteratively.
               </p>
             </div>
             {/* Project 2 */}
