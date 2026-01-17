@@ -227,14 +227,14 @@ export default function Home() {
           <h2 className="text-2xl font-bold mb-6 text-gray-900">
             Latest LinkedIn Post
           </h2>
-          <AnimatedSection className="bg-white rounded-lg shadow-lg p-6 flex flex-col items-center">
+          <AnimatedSection className="bg-white rounded-lg shadow-lg p-4 md:p-6 flex flex-col items-center w-full max-w-[560px] mx-auto">
             <iframe
               src="https://www.linkedin.com/embed/feed/update/urn:li:share:7391066787909611521?collapsed=1"
               height="576"
               width="504"
               allowFullScreen={true}
               title="Embedded post"
-              className="max-w-full"
+              className="w-full max-w-[504px]"
             ></iframe>
           </AnimatedSection>
         </section>
