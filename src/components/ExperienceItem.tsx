@@ -24,7 +24,7 @@ export default function ExperienceItem({
   return (
     <AnimatedSection
       delay={index * 0.1}
-      className="mb-8 bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow"
+      className="mb-8 bg-white rounded-xl shadow-lg p-8 border border-gray-200 hover:shadow-2xl hover:border-emerald-300 transition-all"
     >
       <h3 className="text-xl font-bold text-gray-900">{title}</h3>
       <div className="text-gray-600 mt-1">
@@ -39,7 +39,7 @@ export default function ExperienceItem({
           {skills.map((skill, i) => (
             <span
               key={i}
-              className="bg-blue-100 text-blue-800 text-sm px-3 py-1 rounded-full"
+              className="bg-gradient-to-r from-blue-50 to-emerald-50 text-blue-800 text-sm px-4 py-1.5 rounded-full border border-blue-200 shadow-sm hover:shadow-md transition-shadow"
             >
               {skill}
             </span>

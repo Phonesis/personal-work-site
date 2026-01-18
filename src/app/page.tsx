@@ -6,10 +6,10 @@ import { AnimatedSection } from "@/components/AnimatedSection";
 
 export default function Home() {
   const programmingLanguages = [
-    { name: "JavaScript/TypeScript", level: 9 },
-    { name: "Java", level: 3 },
-    { name: "C#/.NET", level: 3 },
-    { name: "Python", level: 2 },
+    { name: "JavaScript/TypeScript", level: 10 },
+    { name: "Java", level: 6 },
+    { name: "C#/.NET", level: 6 },
+    { name: "Python", level: 5 },
   ];
 
   const testingTools = [
@@ -191,40 +191,61 @@ export default function Home() {
   ];
 
   return (
-    <main className="min-h-screen bg-gray-100" tabIndex={-1}>
+    <main
+      className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50 to-gray-100"
+      tabIndex={-1}
+    >
       <Header />
 
       <div className="container mx-auto px-4 py-12">
         {/* About */}
         <AnimatedSection className="mb-12">
-          <h2 className="text-2xl font-bold mb-4 text-gray-900" id="about">
+          <h2
+            className="text-3xl font-bold mb-6 text-gray-900 border-l-4 border-emerald-500 pl-4"
+            id="about"
+          >
             About Martin
           </h2>
-          <p className="text-gray-700 text-lg leading-relaxed">
-            An ISTQB CTAL–TAE certified Lead Quality Engineer with over 12
-            years&apos; commercial experience designing, implementing, and
-            maintaining both UI and API based automation frameworks from scratch
-            for large scale greenfield projects. A code-focused technical
-            tester, with extensive experience in the usage of Playwright,
-            Cypress, and Selenium WebDriver to build automated tests within
-            Node.js / Java / .NET environments.
-          </p>
-          <p className="text-gray-700 text-lg leading-relaxed mt-4">
-            Passionate about the usage of AI in testing and automation, I
-            regularly leverage LLMs (GPT, Claude, Gemini) with MCP tooling to
-            enhance and speed up the process of generating tests and train
-            others to work in this way to maximise their test coverage.
-          </p>
-          <p className="text-gray-700 text-lg leading-relaxed mt-4">
-            Strong level of experience training, managing, and mentoring junior
-            level testers new to coding and applying automation to testing
-            processes.
-          </p>
+          <div className="bg-white rounded-xl shadow-lg p-8 border border-gray-200 hover:shadow-xl transition-shadow">
+            <p className="text-gray-700 text-lg leading-relaxed">
+              An ISTQB CTAL–TAE certified Lead Quality Engineer with over 12
+              years&apos; commercial experience designing, implementing, and
+              maintaining both UI and API based automation frameworks from
+              scratch for large scale greenfield projects. A code-focused
+              technical tester, with extensive experience in the usage of{" "}
+              <strong className="font-semibold text-gray-900">
+                Playwright
+              </strong>
+              , <strong className="font-semibold text-gray-900">Cypress</strong>
+              , and{" "}
+              <strong className="font-semibold text-gray-900">
+                Selenium WebDriver
+              </strong>{" "}
+              to build automated tests within Node.js / Java / .NET
+              environments.
+            </p>
+            <p className="text-gray-700 text-lg leading-relaxed mt-4">
+              Passionate about the usage of{" "}
+              <strong className="font-semibold text-gray-900">AI</strong> in
+              testing and automation, I regularly leverage{" "}
+              <strong className="font-semibold text-gray-900">LLMs</strong>{" "}
+              (GPT, Claude, Gemini) with{" "}
+              <strong className="font-semibold text-gray-900">MCP</strong>{" "}
+              tooling to enhance and speed up the process of generating tests
+              and train others to work in this way to maximise their test
+              coverage.
+            </p>
+            <p className="text-gray-700 text-lg leading-relaxed mt-4">
+              Strong level of experience training, managing, and mentoring
+              junior level testers new to coding and applying automation to
+              testing processes.
+            </p>
+          </div>
         </AnimatedSection>
 
         {/* LinkedIn Posts */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold mb-6 text-gray-900">
+          <h2 className="text-3xl font-bold mb-6 text-gray-900 border-l-4 border-emerald-500 pl-4">
             Latest LinkedIn Post
           </h2>
           <AnimatedSection className="bg-white rounded-lg shadow-lg p-4 md:p-6 flex flex-col items-center w-full max-w-[560px] mx-auto">
@@ -241,7 +262,9 @@ export default function Home() {
 
         {/* Skills */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold mb-6 text-gray-900">Core Skills</h2>
+          <h2 className="text-3xl font-bold mb-6 text-gray-900 border-l-4 border-emerald-500 pl-4">
+            Core Skills
+          </h2>
           <SkillSection
             title="Programming Languages"
             items={programmingLanguages}
@@ -263,13 +286,13 @@ export default function Home() {
 
         {/* Notable Career Projects */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold mb-6 text-gray-900">
+          <h2 className="text-3xl font-bold mb-6 text-gray-900 border-l-4 border-emerald-500 pl-4">
             Notable Career Projects
           </h2>
-          <AnimatedSection className="bg-white rounded-lg shadow-lg p-6 space-y-8">
+          <AnimatedSection className="bg-white rounded-xl shadow-lg p-8 space-y-8 border border-gray-200 hover:shadow-xl transition-shadow">
             {/* Project 1 */}
-            <div>
-              <h3 className="text-xl font-bold text-emerald-700 mb-1">
+            <div className="pb-8 border-b border-gray-200 last:border-b-0 last:pb-0">
+              <h3 className="text-xl font-bold text-emerald-600 mb-1">
                 Playwright Test Results Dashboard
                 <span className="text-gray-500 font-normal">(2025)</span>
               </h3>
@@ -294,8 +317,8 @@ export default function Home() {
               </p>
             </div>
             {/* Project 2 */}
-            <div>
-              <h3 className="text-xl font-bold text-emerald-700 mb-1">
+            <div className="pb-8 border-b border-gray-200 last:border-b-0 last:pb-0">
+              <h3 className="text-xl font-bold text-emerald-600 mb-1">
                 Retail Annuities - Agile Release Train (RA-ART)
                 <span className="text-gray-500 font-normal">(2025)</span>
               </h3>
@@ -316,8 +339,8 @@ export default function Home() {
               </p>
             </div>
             {/* Project 3 */}
-            <div>
-              <h3 className="text-xl font-bold text-emerald-700 mb-1">
+            <div className="pb-8 border-b border-gray-200 last:border-b-0 last:pb-0">
+              <h3 className="text-xl font-bold text-emerald-600 mb-1">
                 My Scheme Updates (MySU){" "}
                 <span className="text-gray-500 font-normal">(2024)</span>
               </h3>
@@ -337,8 +360,8 @@ export default function Home() {
               </p>
             </div>
             {/* Project 4 */}
-            <div>
-              <h3 className="text-xl font-bold text-emerald-700 mb-1">
+            <div className="pb-8 border-b border-gray-200 last:border-b-0 last:pb-0">
+              <h3 className="text-xl font-bold text-emerald-600 mb-1">
                 Data Productivity Cloud (DPC){" "}
                 <span className="text-gray-500 font-normal">(2022-2023)</span>
               </h3>
@@ -356,8 +379,8 @@ export default function Home() {
               </p>
             </div>
             {/* Project 5 */}
-            <div>
-              <h3 className="text-xl font-bold text-emerald-700 mb-1">
+            <div className="pb-8 border-b border-gray-200 last:border-b-0 last:pb-0">
+              <h3 className="text-xl font-bold text-emerald-600 mb-1">
                 Manage Your Account (MYA){" "}
                 <span className="text-gray-500 font-normal">(2018-2021)</span>
               </h3>
@@ -379,12 +402,12 @@ export default function Home() {
 
         {/* Personal Web Development Projects */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold mb-6 text-gray-900">
+          <h2 className="text-3xl font-bold mb-6 text-gray-900 border-l-4 border-emerald-500 pl-4">
             Personal Web Development Projects
           </h2>
-          <AnimatedSection className="bg-white rounded-lg shadow-lg p-6">
+          <AnimatedSection className="bg-white rounded-xl shadow-lg p-8 border border-gray-200 hover:shadow-xl transition-shadow">
             <div>
-              <h3 className="text-xl font-bold text-emerald-700 mb-3">
+              <h3 className="text-xl font-bold text-emerald-600 mb-3">
                 Life with MND{" "}
                 <span className="text-gray-500 font-normal">(2025)</span>
               </h3>
@@ -411,7 +434,7 @@ export default function Home() {
                   href="https://www.lifewithmnd.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-block px-6 py-3 bg-emerald-600 text-white font-bold rounded shadow hover:bg-emerald-700 transition-colors"
+                  className="inline-block px-6 py-3 bg-gradient-to-r from-emerald-600 to-emerald-700 text-white font-bold rounded-lg shadow-md hover:shadow-lg hover:from-emerald-700 hover:to-emerald-800 transition-all transform hover:-translate-y-0.5"
                 >
                   Visit Site
                 </a>
@@ -422,7 +445,7 @@ export default function Home() {
 
         {/* Experience */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold mb-6 text-gray-900">
+          <h2 className="text-3xl font-bold mb-6 text-gray-900 border-l-4 border-emerald-500 pl-4">
             Work Experience
           </h2>
           {experiences.map((exp, index) => (
@@ -432,10 +455,10 @@ export default function Home() {
 
         {/* Education */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold mb-6 text-gray-900">
+          <h2 className="text-3xl font-bold mb-6 text-gray-900 border-l-4 border-emerald-500 pl-4">
             Education & Certifications
           </h2>
-          <AnimatedSection className="bg-white rounded-lg shadow-lg p-6">
+          <AnimatedSection className="bg-white rounded-xl shadow-lg p-8 border border-gray-200 hover:shadow-xl transition-shadow">
             <div className="mb-6">
               <h3 className="text-xl font-bold text-gray-900">
                 Law Degree LLB (Hons)
@@ -444,14 +467,14 @@ export default function Home() {
               <p className="text-gray-500">October 2005 – July 2008</p>
             </div>
             <div className="space-y-4">
-              <div>
+              <div className="border-l-2 border-emerald-500 pl-4 py-2">
                 <h4 className="font-semibold text-gray-900">
                   AIOps - Foundation Level
                 </h4>
                 <p className="text-gray-600">DevOps Institute</p>
                 <p className="text-gray-500">October 2025</p>
               </div>
-              <div>
+              <div className="border-l-2 border-emerald-500 pl-4 py-2">
                 <h4 className="font-semibold text-gray-900">
                   ISTQB - Certified Tester Advanced Level
                 </h4>
@@ -462,7 +485,7 @@ export default function Home() {
                   BCS (The Chartered Institute for IT) - September 2024
                 </p>
               </div>
-              <div>
+              <div className="border-l-2 border-emerald-500 pl-4 py-2">
                 <h4 className="font-semibold text-gray-900">
                   ISTQB - ISEB Certified Tester Foundation Level (CTFL)
                 </h4>
@@ -477,10 +500,10 @@ export default function Home() {
 
         {/* Interests */}
         <section>
-          <h2 className="text-2xl font-bold mb-6 text-gray-900">
+          <h2 className="text-3xl font-bold mb-6 text-gray-900 border-l-4 border-emerald-500 pl-4">
             Personal Interests
           </h2>
-          <AnimatedSection className="bg-white rounded-lg shadow-lg p-6">
+          <AnimatedSection className="bg-white rounded-xl shadow-lg p-8 border border-gray-200 hover:shadow-xl transition-shadow">
             <ul className="grid grid-cols-2 md:grid-cols-3 gap-4 text-gray-700">
               <li>• Programming / website development</li>
               <li>• Video editing</li>

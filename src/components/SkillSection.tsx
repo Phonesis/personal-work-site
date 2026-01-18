@@ -18,14 +18,25 @@ export default function SkillSection({
       <h3 className="text-xl font-bold mb-4 text-gray-900">{title}</h3>
       <div className="flex flex-wrap gap-3">
         {items.map((item, i) => (
-          <div key={i} className="bg-white rounded-lg shadow px-4 py-2">
-            <span className="text-gray-800">{item.name}</span>
-            {item.level && (
-              <div className="w-24 h-2 bg-gray-200 rounded-full mt-2">
+          <div
+            key={i}
+            className="bg-white rounded-lg shadow-md px-5 py-3 border border-gray-200 hover:shadow-lg hover:border-emerald-300 transition-all transform hover:-translate-y-0.5"
+          >
+            <span className="text-gray-800 font-medium">{item.name}</span>
+            {item.level !== undefined && (
+              <div className="relative mt-2 w-24 group">
                 <div
-                  className="h-full bg-blue-500 rounded-full"
-                  style={{ width: `${item.level * 20}%` }}
-                />
+                  className="h-2 bg-gray-200 rounded-full overflow-hidden"
+                  aria-label={`${item.name} proficiency ${item.level} out of 10`}
+                >
+                  <div
+                    className="h-full bg-gradient-to-r from-emerald-500 to-blue-500 rounded-full transition-all"
+                    style={{ width: `${Math.min(item.level, 10) * 10}%` }}
+                  />
+                </div>
+                <span className="pointer-events-none absolute -top-7 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-md bg-gray-900 px-2 py-0.5 text-xs font-semibold text-white opacity-0 shadow-md transition-opacity duration-100 group-hover:opacity-100 group-focus-within:opacity-100">
+                  {item.level}/10
+                </span>
               </div>
             )}
           </div>
