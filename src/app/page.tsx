@@ -215,7 +215,7 @@ export default function Home() {
         {/* About */}
         <AnimatedSection className="mb-12">
           <h2
-            className="text-3xl font-bold mb-6 text-gray-900 border-l-4 border-emerald-500 pl-4 scroll-mt-72"
+            className="text-3xl font-bold mb-6 text-gray-900 border-l-4 border-emerald-500 pl-4 scroll-mt-20 md:scroll-mt-72"
             id="about"
           >
             About Martin
@@ -258,7 +258,7 @@ export default function Home() {
         </AnimatedSection>
 
         {/* LinkedIn Posts */}
-        <section className="mb-12 scroll-mt-72" id="linkedin">
+        <section className="mb-12 scroll-mt-20 md:scroll-mt-72" id="linkedin">
           <h2 className="text-3xl font-bold mb-6 text-gray-900 border-l-4 border-emerald-500 pl-4">
             Latest LinkedIn Post
           </h2>
@@ -275,7 +275,7 @@ export default function Home() {
         </section>
 
         {/* Skills */}
-        <section className="mb-12 scroll-mt-72" id="skills">
+        <section className="mb-12 scroll-mt-20 md:scroll-mt-72" id="skills">
           <h2 className="text-3xl font-bold mb-6 text-gray-900 border-l-4 border-emerald-500 pl-4">
             Core Skills
           </h2>
@@ -299,7 +299,7 @@ export default function Home() {
         </section>
 
         {/* Notable Career Projects */}
-        <section className="mb-12 scroll-mt-72" id="projects">
+        <section className="mb-12 scroll-mt-20 md:scroll-mt-72" id="projects">
           <h2 className="text-3xl font-bold mb-6 text-gray-900 border-l-4 border-emerald-500 pl-4">
             Notable Career Projects
           </h2>
@@ -415,7 +415,7 @@ export default function Home() {
         </section>
 
         {/* Personal Web Development Projects */}
-        <section className="mb-12 scroll-mt-72" id="personal-projects">
+        <section className="mb-12 scroll-mt-20 md:scroll-mt-72" id="personal-projects">
           <h2 className="text-3xl font-bold mb-6 text-gray-900 border-l-4 border-emerald-500 pl-4">
             Personal Web Development Projects
           </h2>
@@ -458,7 +458,7 @@ export default function Home() {
         </section>
 
         {/* Experience */}
-        <section className="mb-12 scroll-mt-72" id="experience">
+        <section className="mb-12 scroll-mt-20 md:scroll-mt-72" id="experience">
           <h2 className="text-3xl font-bold mb-6 text-gray-900 border-l-4 border-emerald-500 pl-4">
             Work Experience
           </h2>
@@ -468,7 +468,7 @@ export default function Home() {
         </section>
 
         {/* Education */}
-        <section className="mb-12 scroll-mt-72" id="education">
+        <section className="mb-12 scroll-mt-20 md:scroll-mt-72" id="education">
           <h2 className="text-3xl font-bold mb-6 text-gray-900 border-l-4 border-emerald-500 pl-4">
             Education & Certifications
           </h2>
@@ -513,7 +513,7 @@ export default function Home() {
         </section>
 
         {/* Interests */}
-        <section className="scroll-mt-72" id="interests">
+        <section className="scroll-mt-20 md:scroll-mt-72" id="interests">
           <h2 className="text-3xl font-bold mb-6 text-gray-900 border-l-4 border-emerald-500 pl-4">
             Personal Interests
           </h2>
