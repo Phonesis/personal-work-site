@@ -1,10 +1,23 @@
 "use client";
+import { useEffect, useState } from "react";
 import Header from "@/components/Header";
 import ExperienceItem from "@/components/ExperienceItem";
 import SkillSection from "@/components/SkillSection";
 import { AnimatedSection } from "@/components/AnimatedSection";
 
 export default function Home() {
+  const [showBackToTop, setShowBackToTop] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowBackToTop(window.scrollY > 200);
+    };
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
   const programmingLanguages = [
     { name: "JavaScript/TypeScript", level: 10 },
     { name: "Java", level: 6 },
@@ -53,6 +66,7 @@ export default function Home() {
     { name: "Webpack" },
     { name: "Vite" },
     { name: "Node.js" },
+    { name: "Vercel" },
     { name: "HTML" },
     { name: "CSS" },
     { name: "Angular" },
@@ -201,7 +215,7 @@ export default function Home() {
         {/* About */}
         <AnimatedSection className="mb-12">
           <h2
-            className="text-3xl font-bold mb-6 text-gray-900 border-l-4 border-emerald-500 pl-4"
+            className="text-3xl font-bold mb-6 text-gray-900 border-l-4 border-emerald-500 pl-4 scroll-mt-72"
             id="about"
           >
             About Martin
@@ -244,7 +258,7 @@ export default function Home() {
         </AnimatedSection>
 
         {/* LinkedIn Posts */}
-        <section className="mb-12">
+        <section className="mb-12 scroll-mt-72" id="linkedin">
           <h2 className="text-3xl font-bold mb-6 text-gray-900 border-l-4 border-emerald-500 pl-4">
             Latest LinkedIn Post
           </h2>
@@ -261,7 +275,7 @@ export default function Home() {
         </section>
 
         {/* Skills */}
-        <section className="mb-12">
+        <section className="mb-12 scroll-mt-72" id="skills">
           <h2 className="text-3xl font-bold mb-6 text-gray-900 border-l-4 border-emerald-500 pl-4">
             Core Skills
           </h2>
@@ -285,7 +299,7 @@ export default function Home() {
         </section>
 
         {/* Notable Career Projects */}
-        <section className="mb-12">
+        <section className="mb-12 scroll-mt-72" id="projects">
           <h2 className="text-3xl font-bold mb-6 text-gray-900 border-l-4 border-emerald-500 pl-4">
             Notable Career Projects
           </h2>
@@ -401,7 +415,7 @@ export default function Home() {
         </section>
 
         {/* Personal Web Development Projects */}
-        <section className="mb-12">
+        <section className="mb-12 scroll-mt-72" id="personal-projects">
           <h2 className="text-3xl font-bold mb-6 text-gray-900 border-l-4 border-emerald-500 pl-4">
             Personal Web Development Projects
           </h2>
@@ -444,7 +458,7 @@ export default function Home() {
         </section>
 
         {/* Experience */}
-        <section className="mb-12">
+        <section className="mb-12 scroll-mt-72" id="experience">
           <h2 className="text-3xl font-bold mb-6 text-gray-900 border-l-4 border-emerald-500 pl-4">
             Work Experience
           </h2>
@@ -454,7 +468,7 @@ export default function Home() {
         </section>
 
         {/* Education */}
-        <section className="mb-12">
+        <section className="mb-12 scroll-mt-72" id="education">
           <h2 className="text-3xl font-bold mb-6 text-gray-900 border-l-4 border-emerald-500 pl-4">
             Education & Certifications
           </h2>
@@ -499,7 +513,7 @@ export default function Home() {
         </section>
 
         {/* Interests */}
-        <section>
+        <section className="scroll-mt-72" id="interests">
           <h2 className="text-3xl font-bold mb-6 text-gray-900 border-l-4 border-emerald-500 pl-4">
             Personal Interests
           </h2>
@@ -515,6 +529,17 @@ export default function Home() {
           </AnimatedSection>
         </section>
       </div>
+
+      <button
+        type="button"
+        onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+        className={`fixed bottom-6 right-6 z-50 rounded-full bg-emerald-600 p-3 text-white shadow-lg transition-opacity duration-300 hover:bg-emerald-700 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-emerald-300 ${
+          showBackToTop ? "opacity-100" : "pointer-events-none opacity-0"
+        }`}
+        aria-label="Back to top"
+      >
+        ↑
+      </button>
     </main>
   );
 }

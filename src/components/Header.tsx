@@ -1,12 +1,15 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { AnimatedSection } from "./AnimatedSection";
 
 export default function Header() {
   const [isSticky, setIsSticky] = useState(true);
   const [showProfileModal, setShowProfileModal] = useState(false);
+  const [showNav, setShowNav] = useState(false);
+  const [isTouch, setIsTouch] = useState(false);
+  const scrollTimeoutRef = useRef<number | null>(null);
 
   useEffect(() => {
     // Disable sticky on all mobile devices (width < 640px) and on any device in landscape with small height
@@ -29,9 +32,39 @@ export default function Header() {
     };
   }, []);
 
+  useEffect(() => {
+    const media = window.matchMedia("(pointer: coarse)");
+    const updateTouch = () => setIsTouch(media.matches);
+    updateTouch();
+    media.addEventListener("change", updateTouch);
+    return () => {
+      media.removeEventListener("change", updateTouch);
+    };
+  }, []);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowNav(true);
+      if (scrollTimeoutRef.current) {
+        window.clearTimeout(scrollTimeoutRef.current);
+      }
+      scrollTimeoutRef.current = window.setTimeout(() => {
+        setShowNav(false);
+      }, 800);
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      if (scrollTimeoutRef.current) {
+        window.clearTimeout(scrollTimeoutRef.current);
+      }
+    };
+  }, []);
+
   return (
     <header
-      className={`${isSticky ? "sticky top-0" : "relative"} left-0 right-0 z-50 w-full bg-gray-900 text-white py-6 overflow-hidden shadow-lg`}
+      className={`${isSticky ? "sticky top-0" : "relative"} group left-0 right-0 z-50 w-full bg-gray-900 text-white py-6 overflow-hidden shadow-lg`}
     >
       {/* Background image */}
       <div className="absolute inset-0 w-full h-full z-0">
@@ -107,6 +140,36 @@ export default function Header() {
               </li>
             </ul>
           </div>
+          <nav
+            className={`mt-6 transition-opacity duration-500 ease-out md:group-hover:opacity-100 md:group-hover:pointer-events-auto md:group-focus-within:opacity-100 md:group-focus-within:pointer-events-auto ${
+              isTouch || showNav
+                ? "opacity-100 pointer-events-auto md:opacity-100 md:pointer-events-auto"
+                : "opacity-100 pointer-events-auto md:opacity-0 md:pointer-events-none"
+            }`}
+            aria-label="CV section navigation"
+          >
+            <ul className="flex flex-wrap justify-center md:justify-start gap-2">
+              {[
+                { href: "#about", label: "About" },
+                { href: "#linkedin", label: "LinkedIn" },
+                { href: "#skills", label: "Skills" },
+                { href: "#projects", label: "Projects" },
+                { href: "#personal-projects", label: "Personal" },
+                { href: "#experience", label: "Experience" },
+                { href: "#education", label: "Education" },
+                { href: "#interests", label: "Interests" },
+              ].map((link) => (
+                <li key={link.href}>
+                  <a
+                    href={link.href}
+                    className="inline-flex items-center rounded-full border border-emerald-400/50 bg-emerald-500/10 px-3 py-1 text-sm font-semibold text-emerald-200 transition-colors hover:bg-emerald-500/20 hover:text-emerald-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400"
+                  >
+                    {link.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </nav>
         </AnimatedSection>
       </div>
       <div className="absolute inset-0 w-full h-full bg-gradient-to-b from-gray-900/80 to-transparent z-0 pointer-events-none" />
