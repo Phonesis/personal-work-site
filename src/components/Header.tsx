@@ -123,7 +123,7 @@ export default function Header() {
                   className="text-2xl md:text-3xl font-bold text-emerald-400 hover:text-emerald-300 transition-colors underline drop-shadow"
                   itemProp="email"
                 >
-                  Contact Me
+                  Contact
                 </a>
               </li>
               <li>
