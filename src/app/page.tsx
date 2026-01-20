@@ -6,6 +6,7 @@ import SkillSection from "@/components/SkillSection";
 import { AnimatedSection } from "@/components/AnimatedSection";
 
 export default function Home() {
+  const [isLoading, setIsLoading] = useState(true);
   const [showBackToTop, setShowBackToTop] = useState(false);
 
   useEffect(() => {
@@ -16,6 +17,29 @@ export default function Home() {
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => {
       window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  useEffect(() => {
+    const start = Date.now();
+    const minDelay = 450;
+    const stopLoading = () => {
+      const elapsed = Date.now() - start;
+      const remaining = Math.max(minDelay - elapsed, 0);
+      window.setTimeout(() => setIsLoading(false), remaining);
+    };
+
+    if (document.readyState === "complete") {
+      stopLoading();
+    } else {
+      window.addEventListener("load", stopLoading);
+    }
+
+    const fallback = window.setTimeout(() => setIsLoading(false), 2000);
+
+    return () => {
+      window.removeEventListener("load", stopLoading);
+      window.clearTimeout(fallback);
     };
   }, []);
   const programmingLanguages = [
@@ -209,6 +233,18 @@ export default function Home() {
       className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50 to-gray-100"
       tabIndex={-1}
     >
+      <div
+        className={`fixed inset-0 z-[60] flex items-center justify-center bg-gradient-to-br from-gray-50 via-blue-50 to-gray-100 transition-opacity duration-500 ${
+          isLoading ? "opacity-100" : "pointer-events-none opacity-0"
+        }`}
+        aria-hidden={!isLoading}
+      >
+        <div className="flex flex-col items-center gap-3">
+          <div className="h-12 w-12 animate-spin rounded-full border-4 border-emerald-500/30 border-t-emerald-600" />
+
+          <span className="text-sm font-semibold text-gray-600">Loading</span>
+        </div>
+      </div>
       <Header />
 
       <div className="container mx-auto px-4 py-12">
@@ -415,7 +451,10 @@ export default function Home() {
         </section>
 
         {/* Personal Web Development Projects */}
-        <section className="mb-12 scroll-mt-20 md:scroll-mt-72" id="personal-projects">
+        <section
+          className="mb-12 scroll-mt-20 md:scroll-mt-72"
+          id="personal-projects"
+        >
           <h2 className="text-3xl font-bold mb-6 text-gray-900 border-l-4 border-emerald-500 pl-4">
             Personal Web Development Projects
           </h2>
