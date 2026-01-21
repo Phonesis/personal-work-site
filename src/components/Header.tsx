@@ -8,15 +8,15 @@ export default function Header() {
   const [isSticky, setIsSticky] = useState(true);
   const [showProfileModal, setShowProfileModal] = useState(false);
   const [showNav, setShowNav] = useState(false);
-  const [isTouch, setIsTouch] = useState(false);
-  const scrollTimeoutRef = useRef<number | null>(null);
+  const [isHovered, setIsHovered] = useState(false);
+  const hideTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
-    // Disable sticky on all mobile devices (width < 640px) and on any device in landscape with small height
+    // Disable sticky on all mobile devices (width < 640px)
+    // ... logic ...
     const checkSticky = () => {
       const isMobile = window.innerWidth < 640;
       const isLandscape = window.matchMedia("(orientation: landscape)").matches;
-      // If mobile or (landscape and height is small), disable sticky
       if (isMobile || (isLandscape && window.innerHeight < 500)) {
         setIsSticky(false);
       } else {
@@ -33,38 +33,39 @@ export default function Header() {
   }, []);
 
   useEffect(() => {
-    const media = window.matchMedia("(pointer: coarse)");
-    const updateTouch = () => setIsTouch(media.matches);
-    updateTouch();
-    media.addEventListener("change", updateTouch);
-    return () => {
-      media.removeEventListener("change", updateTouch);
-    };
-  }, []);
-
-  useEffect(() => {
-    const handleScroll = () => {
+    const handleScrollActivity = () => {
       setShowNav(true);
-      if (scrollTimeoutRef.current) {
-        window.clearTimeout(scrollTimeoutRef.current);
+      if (hideTimeoutRef.current) {
+        clearTimeout(hideTimeoutRef.current);
       }
-      scrollTimeoutRef.current = window.setTimeout(() => {
+      hideTimeoutRef.current = setTimeout(() => {
         setShowNav(false);
       }, 800);
     };
 
-    window.addEventListener("scroll", handleScroll, { passive: true });
+    // Listen to multiple events for cross-browser compatibility
+    // Safari doesn't always fire 'scroll' events reliably during smooth scroll
+    window.addEventListener("scroll", handleScrollActivity, { passive: true });
+    window.addEventListener("wheel", handleScrollActivity, { passive: true });
+    window.addEventListener("touchmove", handleScrollActivity, {
+      passive: true,
+    });
+
     return () => {
-      window.removeEventListener("scroll", handleScroll);
-      if (scrollTimeoutRef.current) {
-        window.clearTimeout(scrollTimeoutRef.current);
+      window.removeEventListener("scroll", handleScrollActivity);
+      window.removeEventListener("wheel", handleScrollActivity);
+      window.removeEventListener("touchmove", handleScrollActivity);
+      if (hideTimeoutRef.current) {
+        clearTimeout(hideTimeoutRef.current);
       }
     };
   }, []);
 
   return (
     <header
-      className={`${isSticky ? "sticky top-0" : "relative"} group left-0 right-0 z-50 w-full bg-gray-900 text-white py-6 overflow-hidden shadow-lg`}
+      className={`${isSticky ? "sticky top-0" : "relative"} left-0 right-0 z-50 w-full bg-gray-900 text-white py-6 overflow-hidden shadow-lg`}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
     >
       {/* Background image */}
       <div className="absolute inset-0 w-full h-full z-0">
@@ -78,7 +79,7 @@ export default function Header() {
         />
       </div>
       {/* Foreground content */}
-      <div className="relative z-10 container mx-auto px-4 flex flex-col md:flex-row items-center md:items-start gap-6">
+      <div className="relative z-10 container mx-auto px-4 flex flex-col md:flex-row items-center md:items-start gap-6 group">
         <div className="flex-shrink-0 flex justify-center md:justify-start w-full md:w-auto">
           <button
             type="button"
@@ -110,17 +111,15 @@ export default function Header() {
           <p className="text-xl md:text-2xl text-gray-300" itemProp="jobTitle">
             Lead Quality Engineer
           </p>
-          <br />
-          <br />
-          <div className="mt-4 text-gray-400">
+          <div className="mt-3 sm:mt-4 lg:mt-6 text-gray-300">
             <ul
-              className="mt-2 flex flex-col sm:flex-row gap-2 sm:gap-4 justify-center md:justify-start items-center"
+              className="mt-2 flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center md:justify-start items-center"
               aria-label="Contact links"
             >
               <li>
                 <a
                   href="mailto:martin_poole@hotmail.com"
-                  className="text-2xl md:text-3xl font-bold text-emerald-400 hover:text-emerald-300 transition-colors underline drop-shadow"
+                  className="inline-flex items-center justify-center rounded-full border border-emerald-400/60 bg-emerald-500/15 px-5 py-2 text-lg font-semibold text-emerald-200 shadow-sm backdrop-blur-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-emerald-300 hover:bg-emerald-500/25 hover:text-emerald-100 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300"
                   itemProp="email"
                 >
                   Contact
@@ -131,7 +130,7 @@ export default function Header() {
                   href="https://www.linkedin.com/in/martin-poole-6b9b762b/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-2xl md:text-3xl font-bold text-emerald-400 hover:text-emerald-300 transition-colors underline drop-shadow"
+                  className="inline-flex items-center justify-center rounded-full border border-emerald-400/60 bg-emerald-500/10 px-5 py-2 text-lg font-semibold text-emerald-200 shadow-sm backdrop-blur-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-emerald-300 hover:bg-emerald-500/25 hover:text-emerald-100 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300"
                   itemProp="sameAs"
                   aria-label="Martin Poole on LinkedIn"
                 >
@@ -141,10 +140,10 @@ export default function Header() {
             </ul>
           </div>
           <nav
-            className={`mt-6 transition-opacity duration-500 ease-out md:group-hover:opacity-100 md:group-hover:pointer-events-auto md:group-focus-within:opacity-100 md:group-focus-within:pointer-events-auto ${
-              isTouch || showNav
-                ? "opacity-100 pointer-events-auto md:opacity-100 md:pointer-events-auto"
-                : "opacity-100 pointer-events-auto md:opacity-0 md:pointer-events-none"
+            className={`mt-6 transition-all duration-500 ease-out focus-within:opacity-100 focus-within:visible focus-within:pointer-events-auto opacity-100 visible pointer-events-auto 2xl:focus-within:opacity-100 2xl:focus-within:visible 2xl:focus-within:pointer-events-auto ${
+              showNav || isHovered
+                ? "2xl:opacity-100 2xl:visible 2xl:pointer-events-auto"
+                : "2xl:opacity-0 2xl:invisible 2xl:pointer-events-none"
             }`}
             aria-label="CV section navigation"
           >
