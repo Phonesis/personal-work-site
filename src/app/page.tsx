@@ -364,14 +364,14 @@ export default function Home() {
                 centralised repository. A front end then displays the metrics
                 along with trends and info on root causes around failures etc.
                 The site ended up being used by multiple projects and
-                departments within L&G and completely removed any need to
+                departments within the company and completely removed any need to
                 purchase third party reporting solutions.
               </p>
               <p className="text-gray-700">
                 <span className="font-semibold">Role:</span> I devised and
                 developed the site from the ground up, utilising agents to
                 assist with the complex JSON parsing and metrics calculation
-                logic. As part of the development, I also thoroughly test the
+                logic. As part of the development, I also thoroughly tested the
                 solution and rolled new features out iteratively.
               </p>
             </div>
