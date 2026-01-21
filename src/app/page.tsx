@@ -43,8 +43,8 @@ export default function Home() {
     };
   }, []);
   const programmingLanguages = [
-    { name: "JavaScript/TypeScript", level: 10 },
-    { name: "Java", level: 6 },
+    { name: "TypeScript/JavaScript", level: 10 },
+    { name: "Java", level: 7 },
     { name: "C#/.NET", level: 6 },
     { name: "Python", level: 5 },
   ];
@@ -258,11 +258,18 @@ export default function Home() {
           </h2>
           <div className="bg-white rounded-xl shadow-lg p-8 border border-gray-200 hover:shadow-xl transition-shadow">
             <p className="text-gray-700 text-lg leading-relaxed">
-              An ISTQB CTAL–TAE certified Lead Quality Engineer with over 12
-              years&apos; commercial experience designing, implementing, and
-              maintaining both UI and API based automation frameworks from
-              scratch for large scale greenfield projects. A code-focused
-              technical tester, with extensive experience in the usage of{" "}
+              An{" "}
+              <a
+                href="#education"
+                className="font-semibold text-emerald-700 hover:text-emerald-800 underline underline-offset-4"
+              >
+                ISTQB CTAL–TAE
+              </a>{" "}
+              certified Lead Quality Engineer with over 12 years&apos;
+              commercial experience designing, implementing, and maintaining
+              both UI and API based automation frameworks from scratch for large
+              scale greenfield projects. A code-focused technical tester, with
+              extensive experience in the usage of{" "}
               <strong className="font-semibold text-gray-900">
                 Playwright
               </strong>
@@ -319,6 +326,8 @@ export default function Home() {
             title="Programming Languages"
             items={programmingLanguages}
             index={0}
+            fixedCardWidth
+            fullWidthBars
           />
           <SkillSection
             title="Testing Tools/Libraries"
@@ -512,13 +521,6 @@ export default function Home() {
             Education & Certifications
           </h2>
           <AnimatedSection className="bg-white rounded-xl shadow-lg p-8 border border-gray-200 hover:shadow-xl transition-shadow">
-            <div className="mb-6">
-              <h3 className="text-xl font-bold text-gray-900">
-                Law Degree LLB (Hons)
-              </h3>
-              <p className="text-gray-600">University of Sussex</p>
-              <p className="text-gray-500">October 2005 – July 2008</p>
-            </div>
             <div className="space-y-4">
               <div className="border-l-2 border-emerald-500 pl-4 py-2">
                 <h4 className="font-semibold text-gray-900">
@@ -529,14 +531,12 @@ export default function Home() {
               </div>
               <div className="border-l-2 border-emerald-500 pl-4 py-2">
                 <h4 className="font-semibold text-gray-900">
-                  ISTQB - Certified Tester Advanced Level
+                  ISTQB - ISEB Certified Tester Advanced Level (CTAL–TAE)
                 </h4>
-                <p className="text-gray-600">
-                  Test Automation Engineer (CTAL–TAE)
-                </p>
                 <p className="text-gray-500">
-                  BCS (The Chartered Institute for IT) - September 2024
+                  BCS (The Chartered Institute for IT)
                 </p>
+                <p className="text-gray-500">September 2024</p>
               </div>
               <div className="border-l-2 border-emerald-500 pl-4 py-2">
                 <h4 className="font-semibold text-gray-900">
@@ -546,6 +546,13 @@ export default function Home() {
                   BCS (The Chartered Institute for IT)
                 </p>
                 <p className="text-gray-500">July 2011</p>
+              </div>
+              <div className="border-l-2 border-emerald-500 pl-4 py-2">
+                <h4 className="font-semibold text-gray-900">
+                  Law Degree LLB (Hons)
+                </h4>
+                <p className="text-gray-600">University of Sussex</p>
+                <p className="text-gray-500">October 2005 – July 2008</p>
               </div>
             </div>
           </AnimatedSection>
@@ -557,13 +564,22 @@ export default function Home() {
             Personal Interests
           </h2>
           <AnimatedSection className="bg-white rounded-xl shadow-lg p-8 border border-gray-200 hover:shadow-xl transition-shadow">
-            <ul className="grid grid-cols-2 md:grid-cols-3 gap-4 text-gray-700">
-              <li>• Programming / website development</li>
-              <li>• Video editing</li>
-              <li>• Writing</li>
-              <li>• Bouldering/rock climbing</li>
-              <li>• Yoga</li>
-              <li>• Rambling</li>
+            <ul className="flex flex-wrap justify-center md:justify-start gap-2 text-gray-700">
+              {[
+                "Programming / website development",
+                "Video editing",
+                "Writing",
+                "Bouldering / rock climbing",
+                "Yoga",
+                "Rambling",
+              ].map((interest) => (
+                <li
+                  key={interest}
+                  className="rounded-full border border-emerald-300/60 bg-emerald-50 px-4 py-1 text-sm font-medium text-emerald-800 shadow-sm"
+                >
+                  {interest}
+                </li>
+              ))}
             </ul>
           </AnimatedSection>
         </section>

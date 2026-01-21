@@ -6,12 +6,16 @@ interface SkillSectionProps {
   title: string;
   items: { name: string; level?: number }[];
   index: number;
+  fixedCardWidth?: boolean;
+  fullWidthBars?: boolean;
 }
 
 export default function SkillSection({
   title,
   items,
   index,
+  fixedCardWidth = false,
+  fullWidthBars = false,
 }: SkillSectionProps) {
   return (
     <AnimatedSection delay={index * 0.1} className="mb-8">
@@ -20,11 +24,17 @@ export default function SkillSection({
         {items.map((item, i) => (
           <div
             key={i}
-            className="bg-white rounded-lg shadow-md px-5 py-3 border border-gray-200 hover:shadow-lg hover:border-emerald-300 transition-all transform hover:-translate-y-0.5"
+            className={`${
+              fixedCardWidth ? "w-full sm:w-[220px] lg:w-[240px]" : ""
+            } bg-white rounded-lg shadow-md px-5 py-3 border border-gray-200 hover:shadow-lg hover:border-emerald-300 transition-all transform hover:-translate-y-0.5`}
           >
             <span className="text-gray-800 font-medium">{item.name}</span>
             {item.level !== undefined && (
-              <div className="relative mt-2 w-24 group">
+              <div
+                className={`relative mt-2 ${
+                  fullWidthBars ? "w-full" : "w-24"
+                } group`}
+              >
                 <div
                   className="h-2 bg-gray-200 rounded-full overflow-hidden"
                   aria-label={`${item.name} proficiency ${item.level} out of 10`}
