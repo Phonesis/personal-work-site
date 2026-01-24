@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { AnimatedSection } from "./AnimatedSection";
 
 export default function Header() {
@@ -136,6 +137,14 @@ export default function Header() {
                 >
                   LinkedIn
                 </a>
+              </li>
+              <li>
+                <Link
+                  href="/blog"
+                  className="inline-flex items-center justify-center rounded-full border border-amber-400/60 bg-amber-500/15 px-5 py-2 text-lg font-semibold text-amber-200 shadow-sm backdrop-blur-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-amber-300 hover:bg-amber-500/25 hover:text-amber-100 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300"
+                >
+                  Blog
+                </Link>
               </li>
             </ul>
           </div>

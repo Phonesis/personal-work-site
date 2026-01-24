@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import Header from "@/components/Header";
 import ExperienceItem from "@/components/ExperienceItem";
 import SkillSection from "@/components/SkillSection";
@@ -297,6 +298,17 @@ export default function Home() {
               junior level testers new to coding and applying automation to
               testing processes.
             </p>
+            <p className="text-gray-700 text-lg leading-relaxed mt-4">
+              You can find out more about my latest thoughts and work related
+              activities by checking out my{" "}
+              <Link
+                href="/blog"
+                className="font-semibold text-emerald-700 hover:text-emerald-800 underline underline-offset-4"
+              >
+                blog
+              </Link>
+              .
+            </p>
           </div>
         </AnimatedSection>
 
@@ -364,16 +376,34 @@ export default function Home() {
                 centralised repository. A front end then displays the metrics
                 along with trends and info on root causes around failures etc.
                 The site ended up being used by multiple projects and
-                departments within the company and completely removed any need to
-                purchase third party reporting solutions.
+                departments within the company and completely removed any need
+                to purchase third party reporting solutions.
               </p>
-              <p className="text-gray-700">
+              <p className="text-gray-700 mb-3">
                 <span className="font-semibold">Role:</span> I devised and
                 developed the site from the ground up, utilising agents to
                 assist with the complex JSON parsing and metrics calculation
                 logic. As part of the development, I also thoroughly tested the
                 solution and rolled new features out iteratively.
               </p>
+              <Link
+                href="/blog/playwright-test-results-dashboard"
+                className="inline-flex items-center gap-2 text-emerald-600 hover:text-emerald-700 font-semibold transition-colors"
+              >
+                <span>Read the full story</span>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-4 w-4"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+              </Link>
             </div>
             {/* Project 2 */}
             <div className="pb-8 border-b border-gray-200 last:border-b-0 last:pb-0">
