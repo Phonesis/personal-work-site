@@ -618,7 +618,7 @@ export default function Home() {
         <section className="mt-12 text-center">
           <AnimatedSection>
             <div className="text-gray-500 text-sm space-y-1">
-              <p>CV/Resume in PDF/Word format available upon request.</p>
+              <p>CV in PDF/Word format available upon request.</p>
               <p>References available upon request.</p>
             </div>
           </AnimatedSection>
