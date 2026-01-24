@@ -299,7 +299,7 @@ export default function Home() {
               testing processes.
             </p>
             <p className="text-gray-700 text-lg leading-relaxed mt-4">
-              You can find out more about my latest thoughts and work related
+              You can find out more about my latest projects and work-related
               activities by checking out my{" "}
               <Link
                 href="/blog"
