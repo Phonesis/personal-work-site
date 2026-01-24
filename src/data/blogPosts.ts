@@ -40,7 +40,7 @@ export const blogPosts: BlogPost[] = [
     content: [
       {
         type: "paragraph",
-        text: "In modern web development, automated testing is crucial for ensuring application reliability. **Playwright** has emerged as a powerful tool for end-to-end testing, but visualising test results in a meaningful way can be challenging. To address this, I embarked on creating a custom dashboard that centralises and displays Playwright test results effectively across multiple projects and teams.",
+        text: "In modern web development, automated testing is crucial for ensuring application reliability. **Playwright** has emerged as a powerful tool for end-to-end testing, but visualising test results in a meaningful way can be challenging. Particularly to non technical stakeholders. To address this, I embarked on a journey to create a custom dashboard that centralises and displays Playwright test results effectively across multiple projects and teams.",
       },
       {
         type: "image",
