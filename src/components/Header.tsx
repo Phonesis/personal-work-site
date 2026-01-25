@@ -114,13 +114,13 @@ export default function Header() {
           </p>
           <div className="mt-3 sm:mt-4 lg:mt-6 text-gray-300">
             <ul
-              className="mt-2 flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center md:justify-start items-center"
+              className="mt-2 flex flex-row gap-2 sm:gap-4 justify-center md:justify-start items-center flex-wrap"
               aria-label="Contact links"
             >
               <li>
                 <a
                   href="mailto:martin_poole@hotmail.com"
-                  className="inline-flex items-center justify-center rounded-full border border-emerald-400/60 bg-emerald-500/15 px-5 py-2 text-lg font-semibold text-emerald-200 shadow-sm backdrop-blur-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-emerald-300 hover:bg-emerald-500/25 hover:text-emerald-100 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300"
+                  className="inline-flex items-center justify-center rounded-full border border-emerald-400/60 bg-emerald-500/15 px-4 py-1.5 sm:px-5 sm:py-2 text-base sm:text-lg font-semibold text-emerald-200 shadow-sm backdrop-blur-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-emerald-300 hover:bg-emerald-500/25 hover:text-emerald-100 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300"
                   itemProp="email"
                 >
                   Contact
@@ -131,7 +131,7 @@ export default function Header() {
                   href="https://www.linkedin.com/in/martin-poole-6b9b762b/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center rounded-full border border-emerald-400/60 bg-emerald-500/10 px-5 py-2 text-lg font-semibold text-emerald-200 shadow-sm backdrop-blur-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-emerald-300 hover:bg-emerald-500/25 hover:text-emerald-100 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300"
+                  className="inline-flex items-center justify-center rounded-full border border-emerald-400/60 bg-emerald-500/10 px-4 py-1.5 sm:px-5 sm:py-2 text-base sm:text-lg font-semibold text-emerald-200 shadow-sm backdrop-blur-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-emerald-300 hover:bg-emerald-500/25 hover:text-emerald-100 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300"
                   itemProp="sameAs"
                   aria-label="Martin Poole on LinkedIn"
                 >
@@ -141,7 +141,7 @@ export default function Header() {
               <li>
                 <Link
                   href="/blog"
-                  className="inline-flex items-center justify-center rounded-full border border-amber-400/60 bg-amber-500/15 px-5 py-2 text-lg font-semibold text-amber-200 shadow-sm backdrop-blur-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-amber-300 hover:bg-amber-500/25 hover:text-amber-100 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300"
+                  className="inline-flex items-center justify-center rounded-full border border-amber-400/60 bg-amber-500/15 px-4 py-1.5 sm:px-5 sm:py-2 text-base sm:text-lg font-semibold text-amber-200 shadow-sm backdrop-blur-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-amber-300 hover:bg-amber-500/25 hover:text-amber-100 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300"
                 >
                   Blog
                 </Link>
