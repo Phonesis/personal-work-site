@@ -6,6 +6,7 @@ import { Analytics } from "@vercel/analytics/next";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://martinpoole.cv"),
   title: "Martin Poole - Lead Quality Engineer",
   description:
     "Martin Poole is a certified Lead Quality Engineer with 12+ years of experience in Playwright, Cypress, Selenium, and modern CI/CD. Explore skills, projects, and contact info.",
