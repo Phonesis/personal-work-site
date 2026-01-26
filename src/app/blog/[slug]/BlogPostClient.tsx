@@ -306,6 +306,28 @@ export default function BlogPostClient({ post }: BlogPostClientProps) {
                     </ul>
                   );
                 }
+                if (block.type === "embed" && block.embedType === "linkedin") {
+                  return (
+                    <figure key={index} className="my-8">
+                      <div className="flex justify-center">
+                        <iframe
+                          src={block.embedUrl}
+                          height="582"
+                          width="504"
+                          frameBorder="0"
+                          allowFullScreen
+                          title="Embedded LinkedIn post"
+                          className="max-w-full rounded-lg"
+                        />
+                      </div>
+                      {block.caption && (
+                        <figcaption className="text-center text-gray-400 mt-3 text-sm">
+                          {block.caption}
+                        </figcaption>
+                      )}
+                    </figure>
+                  );
+                }
                 return null;
               })}
             </div>

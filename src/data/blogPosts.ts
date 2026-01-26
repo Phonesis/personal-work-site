@@ -1,10 +1,12 @@
 export interface ContentBlock {
-  type: "paragraph" | "heading" | "image" | "code" | "list";
+  type: "paragraph" | "heading" | "image" | "code" | "list" | "embed";
   text?: string;
   src?: string;
   alt?: string;
   caption?: string;
   items?: string[];
+  embedType?: "linkedin";
+  embedUrl?: string;
 }
 
 export interface BlogPost {
@@ -288,6 +290,13 @@ if ($stagedFiles) {
       {
         type: "paragraph",
         text: "Happy prompting.",
+      },
+      {
+        type: "embed",
+        embedType: "linkedin",
+        embedUrl:
+          "https://www.linkedin.com/embed/feed/update/urn:li:share:7421305729635991552?collapsed=1",
+        caption: "Join the discussion on LinkedIn",
       },
     ],
   },
