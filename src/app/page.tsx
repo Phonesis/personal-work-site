@@ -104,7 +104,7 @@ export default function Home() {
     { name: "Claude Sonnet / Opus" },
     { name: "GPT-5" },
     { name: "Gemini Pro / Flash" },
-    { name: "MCP (Playwright, Chrome, Jira)" },
+    { name: "MCP / Skills (Playwright, Chrome, Jira)" },
     { name: "GitHub Coding Agents" },
   ];
 
@@ -130,7 +130,7 @@ export default function Home() {
         "Incorporating Applitools integration for automated visual regression testing for department wide usage across several large UI based projects.",
         "Introducing a Playwright based API testing framework for regression testing activities which exposed multiple defects with GraphQL endpoints. Also used as a basis for a load test framework.",
         "Running regular training sessions and taking part in a 2024 testing conference where I ran a well-received session on Playwright usage.",
-        "Leveraging AI Agents (GPT, Claude, Gemini) and MCP with GitHub Copilot to enhance and speed up the process of generating tests. Training others to work with AI to maximise their test coverage.",
+        "Leveraging AI Agents (GPT, Claude, Gemini) and MCP/Skills (Playwright, Chrome, Jira) with GitHub Copilot to enhance and speed up the process of generating tests. Training others to work with AI to maximise their test coverage.",
         "Acting as a lead on a highly complex regulatory project overseeing the work of a team of graduates to ensure best practices adhered to within a large Playwright based framework.",
       ],
     },
@@ -288,10 +288,11 @@ export default function Home() {
               testing and automation, I regularly leverage{" "}
               <strong className="font-semibold text-gray-900">LLMs</strong>{" "}
               (GPT, Claude, Gemini) with{" "}
-              <strong className="font-semibold text-gray-900">MCP</strong>{" "}
-              tooling to enhance and speed up the process of generating tests
-              and train others to work in this way to maximise their test
-              coverage.
+              <strong className="font-semibold text-gray-900">
+                MCP/Skills
+              </strong>{" "}
+              to enhance and speed up the process of generating tests and train
+              others to work in this way to maximise their test coverage.
             </p>
             <p className="text-gray-700 text-lg leading-relaxed mt-4">
               Strong level of experience training, managing, and mentoring
@@ -422,9 +423,9 @@ export default function Home() {
                 <span className="font-semibold">Role:</span> Acting as a Lead
                 Quality Engineer overseeing a large team of engineers tasked
                 with developing an automation framework from scratch supporting
-                multiple applications and service layers. Introduced MCP and
-                Agent usage to speed up creation of tests and encourage AI
-                utilisation where appropriate.
+                multiple applications and service layers. Introduced MCP,
+                Skills, and Agent usage to speed up creation of tests and
+                encourage AI utilisation where appropriate.
               </p>
             </div>
             {/* Project 3 */}
