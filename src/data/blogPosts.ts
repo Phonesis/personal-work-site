@@ -16,12 +16,135 @@ export interface BlogPost {
   date: string;
   formattedDate: string;
   coverImage?: string;
+  coverImageCaption?: string;
   tags?: string[];
   content: ContentBlock[];
 }
 
 // Add your blog posts here
 export const blogPosts: BlogPost[] = [
+  {
+    slug: "playwright-locator-handler",
+    title: "The Power of Playwright's Locator Handler",
+    excerpt:
+      "How to gracefully handle unpredictable popups and modals in Playwright using the powerful locator handler feature.",
+    date: "2026-02-01",
+    formattedDate: "February 1, 2026",
+    coverImage: "/blog/locator-handler-1.png",
+    coverImageCaption:
+      "The classic scenario. Cookie consent popup randomly appears. Here, we handle it gracefully via a locator handler.",
+    tags: [
+      "Playwright",
+      "Test Automation",
+      "Error Handling",
+      "Locator Handler",
+    ],
+    content: [
+      {
+        type: "paragraph",
+        text: "In Playwright, a particularly useful (but relatively unknown) feature shipped to little fanfare in [version 1.42](https://playwright.dev/docs/release-notes#version-142) early in 2025.",
+      },
+      {
+        type: "paragraph",
+        text: "At first glance, it seems like an obscure concept. But for those who have experience in UI-based test automation, the brilliance of this function soon becomes apparent.",
+      },
+      {
+        type: "heading",
+        text: "The Old Ways",
+      },
+      {
+        type: "paragraph",
+        text: "In the old days of test automation there was a concept known as a **Disaster Recovery**. You'd specifically code a routine that kicked into life given a particular set of circumstances. Unpredictable events would be gracefully handled by such fallback scripts, or at least that was the idea.",
+      },
+      {
+        type: "paragraph",
+        text: "For example, in **QTP (QuickTest Professional) / Micro Focus UFT (Unified Functional Testing)** you'd need to set up a 'Trigger Event' to define the unexpected scenario. This would usually be something like a rogue popup on a website that, unless clicked, would prevent the tool from interacting with other elements.",
+      },
+      {
+        type: "paragraph",
+        text: "In 2012, I remember attending a course in London on this very subject. A weeklong dive into QTP (which was all driven by VBScript) where a whole day was spent on this very subject. I still own the course notes!",
+      },
+      {
+        type: "paragraph",
+        text: "There were many limitations back then when it came to actually applying this. It massively slowed down your test execution for one thing. This was probably because it worked by spinning up dedicated threads to run and trigger as your test pack executed. More frequently than not, you'd simply handle it in code instead by introducing horrendous blocks of if statements, or the 'on error resume next' pattern of VB.",
+      },
+      {
+        type: "paragraph",
+        text: "In the world of browser/website automation, the scenario you needed to cater for was, and continues to almost always be, related to the handling of unexpected elements aka popups/modals/prompts. The classic example is a cookie banner. Or perhaps even a particularly intrusive ad you can't block (or need to test!).",
+      },
+      {
+        type: "paragraph",
+        text: "Surprisingly, I personally never found a neat way of handling these pesky elements during my days working with **Selenium WebDriver** in C#. I also never found a neat way to deal with them when working with **Cypress** in TypeScript as recently as 2023.",
+      },
+      {
+        type: "paragraph",
+        text: "The reality was always a painful case of applying if statements and conditional logic around clicking an element if it is visible. This often involves introducing hard-coded waits and it is almost always inherently flaky.",
+      },
+      {
+        type: "paragraph",
+        text: "It is easy to forget in 2026 that Playwright has been going now since 2020. That's close to 6 whole years as I type this! And for at least 4 of those the same issue around handling unpredictable elements existed. I recall hitting it in 2024 when working on a horrendously legacy website. Playwright was a huge leap forward but still lacked the magic touches.",
+      },
+      {
+        type: "paragraph",
+        text: "Then in early 2025 along came locator handlers…",
+      },
+      {
+        type: "heading",
+        text: "Implementing Locator Handlers",
+      },
+      {
+        type: "paragraph",
+        text: "The concept is rather simple and eloquent in code. It's also ultimately doing precisely what QTP's Disaster Recoveries did back in the day:",
+      },
+      {
+        type: "list",
+        items: [
+          "You call the locator handler function, which is part of the page fixture, and pass in a locator as the first parameter. This is the locator you have identified as a troublesome, unpredictable fly in your framework's carefully crafted ointment.",
+          "You then pass in the desired action to take when/if this locator is encountered during test execution in the form of an anonymous function (lambda). For example: click OK on the popup, wait 1 second, console log it, move on.",
+        ],
+      },
+      {
+        type: "paragraph",
+        text: "That's it! The crucial part is registering this handler early on in your test. In my experience, you should set them up in your **beforeEach** hooks. This ensures you register them before the locator(s) are first likely to be encountered.",
+      },
+      {
+        type: "code",
+        text: "test.beforeEach(async ({ page, dcjPage }) => {\n  await page.addLocatorHandler(\n    page.getByRole('heading', { name: \"Sorry, there's been a problem\" }),\n    async () => {\n      assert.fail(\n        `Sorry, there's been a problem pop up encountered on page - ${await page.url()}`,\n      );\n    },\n  );\n});",
+      },
+      {
+        type: "paragraph",
+        text: "You don't need to handle the locator at all either. In the above example, I fail a test there and then when an uncaught application error is thrown and displayed in the UI. This ensures the test halts immediately and we receive feedback as quickly as possible instead of letting a test hang until a timeout is hit.",
+      },
+      {
+        type: "paragraph",
+        text: "It is worth noting that the locatorHandler function is not asynchronous. Therefore, you do not use the await keyword when calling it. This is because of the nature of what it is doing. Once called, it runs synchronously alongside your test execution. It is also capable of working when you run in parallel using multiple workers. It essentially is applied to each worker.",
+      },
+      {
+        type: "paragraph",
+        text: "However, the function/routine you pass to it as the action to take must be asynchronous in order to work nicely with the rest of your Playwright code.",
+      },
+      {
+        type: "paragraph",
+        text: "What I would like to see next from the Playwright team is the ability to add network handlers. For example, fail the test if a particular network response is something other than a 200 status code.",
+      },
+      {
+        type: "heading",
+        text: "Wrap Up",
+      },
+      {
+        type: "paragraph",
+        text: "Utilising the locator handler where appropriate is a key way to ensure your framework is as robust as possible. If you have any issues with unpredictable elements causing flaky results and blocking your tests from resuming their flows then this is likely the answer.",
+      },
+      {
+        type: "paragraph",
+        text: "Once applied, you can remove all that messy conditional logic if you've resorted to that up until now.",
+      },
+      {
+        type: "paragraph",
+        text: "Generally, it is best to apply simple actions (like click OK in a popup) as your recoveries. Using it to perform more involved flows is perhaps best avoided. This really does depend on your specific use case though.",
+      },
+    ],
+  },
   {
     slug: "playwright-test-results-dashboard",
     title: "Prompt Engineering a Playwright Test Results Dashboard",

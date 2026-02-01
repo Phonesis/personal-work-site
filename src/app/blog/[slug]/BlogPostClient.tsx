@@ -205,6 +205,11 @@ export default function BlogPostClient({ post }: BlogPostClientProps) {
                   />
                 </button>
               ))}
+            {post.coverImageCaption && (
+              <p className="text-center text-gray-400 mb-8 text-base border-t border-gray-700 pt-4">
+                {post.coverImageCaption}
+              </p>
+            )}
 
             {/* Post content */}
             <div className="prose prose-lg prose-invert max-w-none">
