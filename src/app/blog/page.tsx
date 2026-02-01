@@ -29,7 +29,26 @@ export default function BlogPage() {
             </svg>
             <span className="font-semibold">Back to Home</span>
           </Link>
-          <h1 className="text-xl font-bold text-white">My Blog</h1>
+          <div className="flex items-center gap-4">
+            <a
+              href="https://www.linkedin.com/in/martin-poole-6b9b762b/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-emerald-400 hover:text-emerald-300 transition-colors font-semibold"
+              aria-label="LinkedIn"
+            >
+              LinkedIn
+            </a>
+            <a
+              href="https://x.com/_Martin_Poole"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-emerald-400 hover:text-emerald-300 transition-colors font-semibold"
+              aria-label="X"
+            >
+              X
+            </a>
+          </div>
         </div>
       </header>
 
