@@ -1,5 +1,12 @@
 export interface ContentBlock {
-  type: "paragraph" | "heading" | "image" | "code" | "list" | "embed";
+  type:
+    | "paragraph"
+    | "heading"
+    | "image"
+    | "code"
+    | "list"
+    | "embed"
+    | "callout";
   text?: string;
   src?: string;
   alt?: string;
@@ -81,6 +88,10 @@ export const blogPosts: BlogPost[] = [
         text: "The reality was always a painful case of applying if statements and conditional logic around clicking an element if it is visible. This often involves introducing hard-coded waits and it is almost always inherently flaky.",
       },
       {
+        type: "callout",
+        text: "The reality was always a painful case of applying if statements and conditional logic. This often involves introducing hard-coded waits and it is almost always inherently flaky.",
+      },
+      {
         type: "paragraph",
         text: "It is easy to forget in 2026 that Playwright has been going now since 2020. That's close to 6 whole years as I type this! And for at least 4 of those the same issue around handling unpredictable elements existed. I recall hitting it in 2024 when working on a horrendously legacy website. Playwright was a huge leap forward but still lacked the magic touches.",
       },
@@ -130,6 +141,10 @@ export const blogPosts: BlogPost[] = [
       {
         type: "heading",
         text: "Wrap Up",
+      },
+      {
+        type: "callout",
+        text: "Utilising the locator handler where appropriate is a key way to ensure your framework is as robust as possible.",
       },
       {
         type: "paragraph",
@@ -193,7 +208,11 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: "paragraph",
-        text: "Although our tests were capable of the task, **we were struggling with reporting**. Having to hunt through CI logs and stack traces for errors reported by failing tests became a serious burden. Downloading Playwright’s native HTML reports as CI artifacts was also a slow process. The files are often large, easily sometimes exceeding 200MB, and no one could do this unless they were versed with the CI pipelines and had the appropriate access level.",
+        text: "Although our tests were capable of the task, **we were struggling with reporting**. Having to hunt through CI logs and stack traces for errors reported by failing tests became a serious burden. Downloading Playwright's native HTML reports as CI artifacts was also a slow process. The files are often large, easily sometimes exceeding 200MB, and no one could do this unless they were versed with the CI pipelines and had the appropriate access level.",
+      },
+      {
+        type: "callout",
+        text: "We were struggling with reporting. Having to hunt through CI logs and stack traces for errors became a serious burden.",
       },
       {
         type: "paragraph",
@@ -233,6 +252,10 @@ export const blogPosts: BlogPost[] = [
       {
         type: "paragraph",
         text: "Ideas flowed, many got discarded early on. But one stuck: **Use the JSON output** you can enable Playwright to generate as a means to log results into a centralised location. Once the JSON is available, the rest is simply a matter of working with the data. I say simply...",
+      },
+      {
+        type: "callout",
+        text: "Use the JSON output you can enable Playwright to generate as a means to log results into a centralised location.",
       },
       {
         type: "paragraph",
@@ -397,6 +420,10 @@ if ($stagedFiles) {
       {
         type: "heading",
         text: "Takeaway",
+      },
+      {
+        type: "callout",
+        text: "Prompt engineering enables you to build the tools you need but probably only dreamt of up until now.",
       },
       {
         type: "paragraph",

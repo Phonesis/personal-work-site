@@ -334,6 +334,18 @@ export default function BlogPostClient({ post }: BlogPostClientProps) {
                     </figure>
                   );
                 }
+                if (block.type === "callout") {
+                  return (
+                    <blockquote
+                      key={index}
+                      className="my-8 pl-6 border-l-4 border-emerald-500 bg-emerald-500/5 py-4 pr-6 rounded-r-lg"
+                    >
+                      <p className="text-lg text-gray-200 italic leading-relaxed">
+                        {renderTextWithMarkdown(block.text || "")}
+                      </p>
+                    </blockquote>
+                  );
+                }
                 return null;
               })}
             </div>
