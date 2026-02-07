@@ -70,7 +70,7 @@ const buildRssFeed = (baseUrl: string) => {
     '<?xml version="1.0" encoding="UTF-8"?>',
     '<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">',
     "<channel>",
-    "  <title>Martin Poole Blog</title>",
+    "  <title>Martin Poole's Blog</title>",
     `  <link>${escapeXml(baseUrl)}/blog</link>`,
     "  <description>Thoughts, insights, and updates on my latest work projects and ideas I've been working on.</description>",
     "  <language>en-gb</language>",

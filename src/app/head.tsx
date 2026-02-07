@@ -14,7 +14,7 @@ export default function Head() {
       <link
         rel="alternate"
         type="application/rss+xml"
-        title="Martin Poole Blog RSS"
+        title="Martin Poole's Blog RSS"
         href="/rss.xml"
       />
     </>
