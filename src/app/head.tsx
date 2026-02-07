@@ -11,6 +11,12 @@ export default function Head() {
       <meta name="robots" content="index, follow" />
       <link rel="icon" href="/icon.svg" type="image/svg+xml" />
       <link rel="canonical" href="https://martinpoole.cv/" />
+      <link
+        rel="alternate"
+        type="application/rss+xml"
+        title="Martin Poole Blog RSS"
+        href="/rss.xml"
+      />
     </>
   );
 }

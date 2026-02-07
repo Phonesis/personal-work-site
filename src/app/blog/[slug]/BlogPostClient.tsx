@@ -129,6 +129,25 @@ export default function BlogPostClient({ post }: BlogPostClientProps) {
               Blog
             </Link>
           </div>
+          <div className="flex items-center">
+            <a
+              href="/rss.xml"
+              className="inline-flex items-center gap-2 text-emerald-400 hover:text-emerald-300 transition-colors font-semibold"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-4 w-4"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+                aria-hidden="true"
+              >
+                <path d="M5 3a2 2 0 00-2 2v2a2 2 0 002 2 7 7 0 017 7 2 2 0 002 2h2a2 2 0 002-2A11 11 0 005 3z" />
+                <path d="M4 12a1 1 0 100 2 4 4 0 014 4 1 1 0 102 0 6 6 0 00-6-6z" />
+                <path d="M5 19a2 2 0 100-4 2 2 0 000 4z" />
+              </svg>
+              Subscribe via RSS
+            </a>
+          </div>
         </div>
       </header>
 
