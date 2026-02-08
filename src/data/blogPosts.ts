@@ -14,6 +14,7 @@ export interface ContentBlock {
   items?: string[];
   embedType?: "linkedin";
   embedUrl?: string;
+  height?: number | string;
 }
 
 export interface BlogPost {
@@ -157,6 +158,14 @@ export const blogPosts: BlogPost[] = [
       {
         type: "paragraph",
         text: "Generally, it is best to apply simple actions (like click OK in a popup) as your recoveries. Using it to perform more involved flows is perhaps best avoided. This really does depend on your specific use case though.",
+      },
+      {
+        type: "embed",
+        embedType: "linkedin",
+        embedUrl:
+          "https://www.linkedin.com/embed/feed/update/urn:li:share:7426239417369034752?collapsed=1",
+        caption: "Join the discussion on LinkedIn",
+        height: "262",
       },
     ],
   },

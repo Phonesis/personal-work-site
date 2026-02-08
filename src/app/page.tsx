@@ -320,8 +320,8 @@ export default function Home() {
           </h2>
           <AnimatedSection className="bg-white rounded-lg shadow-lg p-4 md:p-6 flex flex-col items-center w-full max-w-[560px] mx-auto">
             <iframe
-              src="https://www.linkedin.com/embed/feed/update/urn:li:share:7421305729635991552?collapsed=1"
-              height="582"
+              src="https://www.linkedin.com/embed/feed/update/urn:li:share:7426239417369034752?collapsed=1"
+              height="262"
               width="504"
               allowFullScreen={true}
               title="Embedded post"

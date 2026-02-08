@@ -19,6 +19,7 @@ export default function BlogPostClient({ post }: BlogPostClientProps) {
   const [isMobile, setIsMobile] = useState(false);
   const [showBackToTop, setShowBackToTop] = useState(false);
   const [copied, setCopied] = useState(false);
+  const [currentUrl, setCurrentUrl] = useState("");
 
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth < 768);
@@ -34,6 +35,10 @@ export default function BlogPostClient({ post }: BlogPostClientProps) {
     handleScroll();
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  useEffect(() => {
+    setCurrentUrl(window.location.href);
   }, []);
 
   // Calculate reading time based on word count
@@ -337,7 +342,7 @@ export default function BlogPostClient({ post }: BlogPostClientProps) {
                       <div className="flex justify-center">
                         <iframe
                           src={block.embedUrl}
-                          height="582"
+                          height={block.height ?? 582}
                           width="504"
                           frameBorder="0"
                           allowFullScreen
@@ -418,7 +423,7 @@ export default function BlogPostClient({ post }: BlogPostClientProps) {
 
                 {/* Share on X/Twitter */}
                 <a
-                  href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(typeof window !== "undefined" ? window.location.href : "")}&text=${encodeURIComponent(post.title)}`}
+                  href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(currentUrl)}&text=${encodeURIComponent(post.title)}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-gray-800 hover:bg-gray-700 text-gray-300 hover:text-white transition-colors border border-gray-700"
@@ -435,7 +440,7 @@ export default function BlogPostClient({ post }: BlogPostClientProps) {
 
                 {/* Share on LinkedIn */}
                 <a
-                  href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(typeof window !== "undefined" ? window.location.href : "")}`}
+                  href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(currentUrl)}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-gray-800 hover:bg-gray-700 text-gray-300 hover:text-white transition-colors border border-gray-700"
