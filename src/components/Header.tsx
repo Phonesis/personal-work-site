@@ -358,7 +358,7 @@ export default function Header() {
         </AnimatedSection>
         {/* Desktop: contact links on right side when minimized */}
         {isMinimized && (
-          <div className="hidden md:flex flex-col flex-shrink-0 items-center gap-1 ml-auto">
+          <div className="hidden md:flex flex-row flex-shrink-0 items-center gap-2 ml-auto">
             <div className="flex items-center gap-2">
               <a
                 href="mailto:martin_poole@hotmail.com"
@@ -388,7 +388,7 @@ export default function Header() {
             </div>
             <Link
               href="/blog"
-              className="inline-flex items-center rounded-full border border-amber-400/40 bg-amber-500/10 px-2.5 py-0.5 text-xs font-medium text-amber-200 transition-colors hover:bg-amber-500/20 hover:text-amber-100"
+              className="inline-flex items-center rounded-full border border-amber-400/60 bg-amber-500/20 px-3.5 py-1.5 text-sm font-bold text-amber-100 shadow-sm transition-colors hover:bg-amber-500/30 hover:text-amber-50"
             >
               Blog
             </Link>
@@ -396,7 +396,37 @@ export default function Header() {
         )}
         {/* Mobile hamburger button - only when minimized on small screens */}
         {isMinimized && (
-          <div className="md:hidden flex-shrink-0 ml-auto">
+          <div className="md:hidden flex-shrink-0 ml-auto flex items-center gap-2">
+            <a
+              href="mailto:martin_poole@hotmail.com"
+              className="inline-flex items-center rounded-full border border-emerald-400/60 bg-emerald-900/80 px-3 py-1 text-xs font-semibold text-emerald-100 shadow-sm backdrop-blur-md transition-colors hover:bg-emerald-800/90 hover:text-emerald-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300"
+            >
+              Contact
+            </a>
+            <a
+              href="https://www.linkedin.com/in/martin-poole-6b9b762b/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center rounded-full border border-emerald-400/60 bg-emerald-900/80 px-3 py-1 text-xs font-semibold text-emerald-100 shadow-sm backdrop-blur-md transition-colors hover:bg-emerald-800/90 hover:text-emerald-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300"
+              aria-label="Martin Poole on LinkedIn"
+            >
+              LinkedIn
+            </a>
+            <a
+              href="https://x.com/_Martin_Poole"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center rounded-full border border-emerald-400/60 bg-emerald-900/80 px-3 py-1 text-xs font-semibold text-emerald-100 shadow-sm backdrop-blur-md transition-colors hover:bg-emerald-800/90 hover:text-emerald-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300"
+              aria-label="Martin Poole on X"
+            >
+              X
+            </a>
+            <Link
+              href="/blog"
+              className="inline-flex items-center rounded-full border border-amber-400/60 bg-amber-900/90 px-3 py-1 text-xs font-bold text-amber-100 shadow-sm backdrop-blur-md transition-colors hover:bg-amber-800/95 hover:text-amber-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300"
+            >
+              Blog
+            </Link>
             <button
               type="button"
               aria-label={
@@ -477,40 +507,7 @@ export default function Header() {
               </li>
             ))}
           </ul>
-          <div className="mt-3 pt-3 border-t border-gray-700/50 flex flex-wrap items-center gap-2">
-            <a
-              href="mailto:martin_poole@hotmail.com"
-              onClick={() => setMobileMenuOpen(false)}
-              className="inline-flex items-center rounded-full border border-emerald-400/50 bg-emerald-900/80 px-3 py-1 text-sm font-semibold text-emerald-200 backdrop-blur-md transition-colors hover:bg-emerald-800/90 hover:text-emerald-100"
-            >
-              Contact
-            </a>
-            <a
-              href="https://www.linkedin.com/in/martin-poole-6b9b762b/"
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={() => setMobileMenuOpen(false)}
-              className="inline-flex items-center rounded-full border border-emerald-400/50 bg-emerald-900/80 px-3 py-1 text-sm font-semibold text-emerald-200 backdrop-blur-md transition-colors hover:bg-emerald-800/90 hover:text-emerald-100"
-            >
-              LinkedIn
-            </a>
-            <a
-              href="https://x.com/_Martin_Poole"
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={() => setMobileMenuOpen(false)}
-              className="inline-flex items-center rounded-full border border-emerald-400/50 bg-emerald-900/80 px-3 py-1 text-sm font-semibold text-emerald-200 backdrop-blur-md transition-colors hover:bg-emerald-800/90 hover:text-emerald-100"
-            >
-              X
-            </a>
-            <Link
-              href="/blog"
-              onClick={() => setMobileMenuOpen(false)}
-              className="inline-flex items-center rounded-full border border-amber-400/50 bg-amber-900/80 px-3 py-1 text-sm font-semibold text-amber-200 backdrop-blur-md transition-colors hover:bg-amber-800/90 hover:text-amber-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300"
-            >
-              Blog
-            </Link>
-          </div>
+          <div className="mt-3 pt-3 border-t border-gray-700/50 flex flex-wrap items-center gap-2"></div>
         </nav>
       </div>
 
