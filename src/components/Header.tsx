@@ -157,9 +157,14 @@ export default function Header() {
   return (
     <header
       ref={menuRef}
-      style={{ overflowAnchor: "none" }}
+      style={{
+        overflowAnchor: "none",
+        paddingTop: `calc(env(safe-area-inset-top) + ${
+          isMinimized ? "0.5rem" : "1.5rem"
+        })`,
+      }}
       className={`sticky top-0 left-0 right-0 z-50 w-full bg-gray-900 text-white shadow-lg transition-all duration-300 ease-in-out ${
-        isMinimized ? "py-2" : "py-6 overflow-hidden"
+        isMinimized ? "pb-2" : "pb-6 overflow-hidden"
       }`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
@@ -399,33 +404,53 @@ export default function Header() {
           <div className="md:hidden flex-shrink-0 ml-auto flex items-center gap-2">
             <a
               href="mailto:martin_poole@hotmail.com"
-              className="inline-flex items-center rounded-full border border-emerald-400/60 bg-emerald-900/80 px-3 py-1 text-xs font-semibold text-emerald-100 shadow-sm backdrop-blur-md transition-colors hover:bg-emerald-800/90 hover:text-emerald-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300"
+              className="p-1.5 rounded-lg border border-emerald-400/40 bg-emerald-500/10 text-emerald-200 transition-colors hover:bg-emerald-500/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400"
+              aria-label="Email Martin Poole"
             >
-              Contact
-            </a>
-            <a
-              href="https://www.linkedin.com/in/martin-poole-6b9b762b/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center rounded-full border border-emerald-400/60 bg-emerald-900/80 px-3 py-1 text-xs font-semibold text-emerald-100 shadow-sm backdrop-blur-md transition-colors hover:bg-emerald-800/90 hover:text-emerald-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300"
-              aria-label="Martin Poole on LinkedIn"
-            >
-              LinkedIn
-            </a>
-            <a
-              href="https://x.com/_Martin_Poole"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center rounded-full border border-emerald-400/60 bg-emerald-900/80 px-3 py-1 text-xs font-semibold text-emerald-100 shadow-sm backdrop-blur-md transition-colors hover:bg-emerald-800/90 hover:text-emerald-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300"
-              aria-label="Martin Poole on X"
-            >
-              X
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth={2}
+                className="h-5 w-5"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M4 6h16a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2Z"
+                />
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="m22 8-10 6L2 8"
+                />
+              </svg>
             </a>
             <Link
               href="/blog"
-              className="inline-flex items-center rounded-full border border-amber-400/60 bg-amber-900/90 px-3 py-1 text-xs font-bold text-amber-100 shadow-sm backdrop-blur-md transition-colors hover:bg-amber-800/95 hover:text-amber-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300"
+              className="p-1.5 rounded-lg border border-amber-400/50 bg-amber-500/15 text-amber-100 transition-colors hover:bg-amber-500/25 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-400"
+              aria-label="Open blog"
             >
-              Blog
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth={2}
+                className="h-5 w-5"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V9"
+                />
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M14 3v6h6"
+                />
+              </svg>
             </Link>
             <button
               type="button"
@@ -507,7 +532,38 @@ export default function Header() {
               </li>
             ))}
           </ul>
-          <div className="mt-3 pt-3 border-t border-gray-700/50 flex flex-wrap items-center gap-2"></div>
+          <div className="mt-3 pt-3 border-t border-gray-700/50 flex flex-wrap items-center gap-2">
+            <a
+              href="mailto:martin_poole@hotmail.com"
+              className="inline-flex items-center rounded-full border border-emerald-400/60 bg-emerald-900/80 px-3 py-1 text-xs font-semibold text-emerald-100 shadow-sm backdrop-blur-md transition-colors hover:bg-emerald-800/90 hover:text-emerald-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300"
+            >
+              Contact
+            </a>
+            <a
+              href="https://www.linkedin.com/in/martin-poole-6b9b762b/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center rounded-full border border-emerald-400/60 bg-emerald-900/80 px-3 py-1 text-xs font-semibold text-emerald-100 shadow-sm backdrop-blur-md transition-colors hover:bg-emerald-800/90 hover:text-emerald-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300"
+              aria-label="Martin Poole on LinkedIn"
+            >
+              LinkedIn
+            </a>
+            <a
+              href="https://x.com/_Martin_Poole"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center rounded-full border border-emerald-400/60 bg-emerald-900/80 px-3 py-1 text-xs font-semibold text-emerald-100 shadow-sm backdrop-blur-md transition-colors hover:bg-emerald-800/90 hover:text-emerald-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300"
+              aria-label="Martin Poole on X"
+            >
+              X
+            </a>
+            <Link
+              href="/blog"
+              className="inline-flex items-center rounded-full border border-amber-400/60 bg-amber-900/90 px-3 py-1 text-xs font-bold text-amber-100 shadow-sm backdrop-blur-md transition-colors hover:bg-amber-800/95 hover:text-amber-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300"
+            >
+              Blog
+            </Link>
+          </div>
         </nav>
       </div>
 
