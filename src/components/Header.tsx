@@ -7,11 +7,8 @@ import { AnimatedSection } from "./AnimatedSection";
 
 export default function Header() {
   const [showProfileModal, setShowProfileModal] = useState(false);
-  const [showNav, setShowNav] = useState(false);
-  const [isHovered, setIsHovered] = useState(false);
   const [isMinimized, setIsMinimized] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const hideTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const menuRef = useRef<HTMLDivElement>(null);
   const isMinimizedRef = useRef(false);
   const rafRef = useRef<number | null>(null);
@@ -96,35 +93,6 @@ export default function Header() {
     };
   }, [mobileMenuOpen]);
 
-  useEffect(() => {
-    const handleScrollActivity = () => {
-      setShowNav(true);
-      if (hideTimeoutRef.current) {
-        clearTimeout(hideTimeoutRef.current);
-      }
-      hideTimeoutRef.current = setTimeout(() => {
-        setShowNav(false);
-      }, 800);
-    };
-
-    // Listen to multiple events for cross-browser compatibility
-    // Safari doesn't always fire 'scroll' events reliably during smooth scroll
-    window.addEventListener("scroll", handleScrollActivity, { passive: true });
-    window.addEventListener("wheel", handleScrollActivity, { passive: true });
-    window.addEventListener("touchmove", handleScrollActivity, {
-      passive: true,
-    });
-
-    return () => {
-      window.removeEventListener("scroll", handleScrollActivity);
-      window.removeEventListener("wheel", handleScrollActivity);
-      window.removeEventListener("touchmove", handleScrollActivity);
-      if (hideTimeoutRef.current) {
-        clearTimeout(hideTimeoutRef.current);
-      }
-    };
-  }, []);
-
   // Scroll to anchor after header has minimized to avoid overshoot
   const handleAnchorClick = (
     e: React.MouseEvent<HTMLAnchorElement>,
@@ -166,17 +134,18 @@ export default function Header() {
       className={`sticky top-0 left-0 right-0 z-50 w-full bg-gray-900 text-white shadow-lg transition-all duration-300 ease-in-out ${
         isMinimized ? "pb-2" : "pb-6 overflow-hidden"
       }`}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
     >
       {/* Background image */}
-      <div className="absolute inset-0 w-full h-full z-0">
+      <div
+        className={`absolute inset-0 w-full h-full z-0 transition-opacity duration-300 ${
+          isMinimized ? "opacity-30" : "opacity-60"
+        }`}
+      >
         <Image
           src="/header-bg.png"
           alt="Header background"
           fill
           style={{ objectFit: "cover", objectPosition: "top" }}
-          className="opacity-60"
           priority
         />
       </div>
@@ -230,7 +199,7 @@ export default function Header() {
           }`}
         >
           <h1
-            className={`font-bold transition-all duration-300 ease-in-out ${
+            className={`font-bold transition-all duration-300 ease-in-out drop-shadow-md ${
               isMinimized
                 ? "text-base sm:text-lg md:text-xl mb-0 leading-tight"
                 : "text-4xl md:text-5xl mb-2"
@@ -240,10 +209,10 @@ export default function Header() {
             Martin Poole
           </h1>
           <p
-            className={`text-gray-300 transition-all duration-300 ease-in-out ${
+            className={`transition-all duration-300 ease-in-out drop-shadow-sm ${
               isMinimized
-                ? "text-xs sm:text-sm leading-tight"
-                : "text-xl md:text-2xl"
+                ? "text-gray-200 text-xs sm:text-sm leading-tight"
+                : "text-gray-300 text-xl md:text-2xl"
             }`}
             itemProp="jobTitle"
           >
@@ -325,16 +294,8 @@ export default function Header() {
             </ul>
           </div>
           <nav
-            className={`transition-all duration-500 ease-out focus-within:opacity-100 focus-within:visible focus-within:pointer-events-auto ${
-              isMinimized
-                ? "hidden"
-                : "mt-6 opacity-100 visible pointer-events-auto 2xl:focus-within:opacity-100 2xl:focus-within:visible 2xl:focus-within:pointer-events-auto"
-            } ${
-              !isMinimized && (showNav || isHovered)
-                ? "2xl:opacity-100 2xl:visible 2xl:pointer-events-auto"
-                : !isMinimized
-                  ? "2xl:opacity-0 2xl:invisible 2xl:pointer-events-none"
-                  : ""
+            className={`transition-all duration-300 ease-in-out ${
+              isMinimized ? "hidden" : "mt-6 opacity-100 visible"
             }`}
             aria-label="CV section navigation"
           >
