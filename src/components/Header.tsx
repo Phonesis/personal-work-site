@@ -6,32 +6,95 @@ import Link from "next/link";
 import { AnimatedSection } from "./AnimatedSection";
 
 export default function Header() {
-  const [isSticky, setIsSticky] = useState(true);
   const [showProfileModal, setShowProfileModal] = useState(false);
   const [showNav, setShowNav] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
+  const [isMinimized, setIsMinimized] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const hideTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const menuRef = useRef<HTMLDivElement>(null);
+  const isMinimizedRef = useRef(false);
+  const rafRef = useRef<number | null>(null);
 
+  // Track scroll to minimize header
+  // Uses a lock mechanism: after minimizing, ignore upward scroll caused by
+  // the header height change until the user actively scrolls further down.
   useEffect(() => {
-    // Disable sticky on all mobile devices (width < 640px)
-    // ... logic ...
-    const checkSticky = () => {
-      const isMobile = window.innerWidth < 640;
-      const isLandscape = window.matchMedia("(orientation: landscape)").matches;
-      if (isMobile || (isLandscape && window.innerHeight < 500)) {
-        setIsSticky(false);
+    const MINIMIZE_AT = 80;
+    const RESTORE_AT = 20;
+    let lockedUntilY: number | null = null; // prevents jitter after minimize
+
+    const syncMinimized = () => {
+      const y = window.scrollY;
+      const prev = isMinimizedRef.current;
+
+      if (prev) {
+        // Currently minimized — only restore if user has scrolled near the top
+        // and the lock has been cleared
+        if (lockedUntilY !== null) {
+          // User must scroll past the lock point (further down) to clear it
+          if (y >= lockedUntilY) {
+            lockedUntilY = null;
+          } else {
+            // Still locked — don't restore even if y < RESTORE_AT
+            return;
+          }
+        }
+        if (y <= RESTORE_AT) {
+          isMinimizedRef.current = false;
+          setIsMinimized(false);
+          setMobileMenuOpen(false);
+        }
       } else {
-        setIsSticky(true);
+        // Currently expanded — minimize if scrolled past threshold
+        if (y > MINIMIZE_AT) {
+          isMinimizedRef.current = true;
+          setIsMinimized(true);
+          // Lock: the header shrink will shift scrollY, so ignore any
+          // scroll-up that happens until user scrolls past current position
+          lockedUntilY = y;
+        }
       }
     };
-    checkSticky();
-    window.addEventListener("resize", checkSticky);
-    window.addEventListener("orientationchange", checkSticky);
+
+    const handleScroll = () => {
+      if (rafRef.current) return;
+      rafRef.current = requestAnimationFrame(() => {
+        rafRef.current = null;
+        syncMinimized();
+      });
+    };
+
+    // Sync immediately on mount
+    syncMinimized();
+    // Also re-check after a short delay to catch browser scroll restoration
+    const restoreTimer = setTimeout(syncMinimized, 100);
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => {
-      window.removeEventListener("resize", checkSticky);
-      window.removeEventListener("orientationchange", checkSticky);
+      window.removeEventListener("scroll", handleScroll);
+      clearTimeout(restoreTimer);
+      if (rafRef.current) cancelAnimationFrame(rafRef.current);
     };
   }, []);
+
+  // Close mobile menu on outside click
+  useEffect(() => {
+    if (!mobileMenuOpen) return;
+    const handleClickOutside = (e: MouseEvent) => {
+      if (menuRef.current && !menuRef.current.contains(e.target as Node)) {
+        setMobileMenuOpen(false);
+      }
+    };
+    // Use setTimeout to avoid the opening click from immediately triggering close
+    const timer = setTimeout(() => {
+      document.addEventListener("click", handleClickOutside);
+    }, 0);
+    return () => {
+      clearTimeout(timer);
+      document.removeEventListener("click", handleClickOutside);
+    };
+  }, [mobileMenuOpen]);
 
   useEffect(() => {
     const handleScrollActivity = () => {
@@ -62,9 +125,42 @@ export default function Header() {
     };
   }, []);
 
+  // Scroll to anchor after header has minimized to avoid overshoot
+  const handleAnchorClick = (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    href: string,
+  ) => {
+    e.preventDefault();
+    setMobileMenuOpen(false);
+
+    const scrollToTarget = () => {
+      const id = href.replace("#", "");
+      const el = document.getElementById(id);
+      if (!el) return;
+      const headerHeight = menuRef.current?.offsetHeight ?? 0;
+      const offset = headerHeight + 16;
+      const top = el.getBoundingClientRect().top + window.scrollY - offset;
+      window.scrollTo({ top, behavior: "smooth" });
+    };
+
+    if (!isMinimizedRef.current) {
+      // Header is expanded — it will shrink on scroll, so force minimize first
+      isMinimizedRef.current = true;
+      setIsMinimized(true);
+      // Wait for the CSS transition to finish before calculating position
+      setTimeout(scrollToTarget, 320);
+    } else {
+      scrollToTarget();
+    }
+  };
+
   return (
     <header
-      className={`${isSticky ? "sticky top-0" : "relative"} left-0 right-0 z-50 w-full bg-gray-900 text-white py-6 overflow-hidden shadow-lg`}
+      ref={menuRef}
+      style={{ overflowAnchor: "none" }}
+      className={`sticky top-0 left-0 right-0 z-50 w-full bg-gray-900 text-white shadow-lg transition-all duration-300 ease-in-out ${
+        isMinimized ? "py-2" : "py-6 overflow-hidden"
+      }`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
@@ -80,8 +176,20 @@ export default function Header() {
         />
       </div>
       {/* Foreground content */}
-      <div className="relative z-10 container mx-auto px-4 flex flex-col md:flex-row items-center md:items-start gap-6 group">
-        <div className="flex-shrink-0 flex justify-center md:justify-start w-full md:w-auto">
+      <div
+        className={`relative z-10 container mx-auto px-4 flex transition-all duration-300 ease-in-out ${
+          isMinimized
+            ? "flex-row items-center gap-3 sm:gap-4"
+            : "flex-col md:flex-row items-center md:items-start gap-4 md:gap-6"
+        } group`}
+      >
+        <div
+          className={`flex-shrink-0 flex transition-all duration-300 ease-in-out ${
+            isMinimized
+              ? "w-auto"
+              : "justify-center md:justify-start w-full md:w-auto"
+          }`}
+        >
           <button
             type="button"
             aria-label="Enlarge profile picture"
@@ -100,19 +208,70 @@ export default function Header() {
               alt="Martin Poole profile photo"
               width={120}
               height={120}
-              className="rounded-full border-4 border-gray-700 shadow-lg bg-white/80"
+              className={`rounded-full border-4 border-gray-700 shadow-lg bg-white/80 transition-all duration-300 ease-in-out ${
+                isMinimized
+                  ? "!w-10 !h-10 sm:!w-12 sm:!h-12 border-2"
+                  : "!w-24 !h-24 sm:!w-[120px] sm:!h-[120px]"
+              }`}
               priority
             />
           </button>
         </div>
-        <AnimatedSection className="text-center md:text-left w-full">
-          <h1 className="text-4xl md:text-5xl font-bold mb-2" itemProp="name">
+        <AnimatedSection
+          className={`transition-all duration-300 ease-in-out ${
+            isMinimized
+              ? "text-left flex-1 min-w-0"
+              : "text-center md:text-left w-full"
+          }`}
+        >
+          <h1
+            className={`font-bold transition-all duration-300 ease-in-out ${
+              isMinimized
+                ? "text-base sm:text-lg md:text-xl mb-0 leading-tight"
+                : "text-4xl md:text-5xl mb-2"
+            }`}
+            itemProp="name"
+          >
             Martin Poole
           </h1>
-          <p className="text-xl md:text-2xl text-gray-300" itemProp="jobTitle">
+          <p
+            className={`text-gray-300 transition-all duration-300 ease-in-out ${
+              isMinimized
+                ? "text-xs sm:text-sm leading-tight"
+                : "text-xl md:text-2xl"
+            }`}
+            itemProp="jobTitle"
+          >
             Lead Quality Engineer
           </p>
-          <div className="mt-3 sm:mt-4 lg:mt-6 text-gray-300">
+          {/* Desktop: compact inline nav pills when minimized */}
+          {isMinimized && (
+            <div className="hidden md:flex flex-wrap gap-1.5 sm:gap-2 mt-1 items-center">
+              {[
+                { href: "#about", label: "About" },
+                { href: "#skills", label: "Skills" },
+                { href: "#projects", label: "Projects" },
+                { href: "#personal-projects", label: "Personal" },
+                { href: "#experience", label: "Experience" },
+                { href: "#education", label: "Education" },
+                { href: "#interests", label: "Interests" },
+              ].map((link) => (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  onClick={(e) => handleAnchorClick(e, link.href)}
+                  className="inline-flex items-center rounded-full border border-emerald-400/40 bg-emerald-500/10 px-2 py-0.5 text-[10px] sm:text-xs font-medium text-emerald-200 transition-colors hover:bg-emerald-500/20 hover:text-emerald-100"
+                >
+                  {link.label}
+                </a>
+              ))}
+            </div>
+          )}
+          <div
+            className={`text-gray-300 transition-all duration-300 ease-in-out ${
+              isMinimized ? "hidden" : "mt-3 sm:mt-4 lg:mt-6"
+            }`}
+          >
             <ul
               className="mt-2 flex flex-row gap-2 sm:gap-4 justify-center md:justify-start items-center flex-wrap"
               aria-label="Contact links"
@@ -120,7 +279,7 @@ export default function Header() {
               <li>
                 <a
                   href="mailto:martin_poole@hotmail.com"
-                  className="inline-flex items-center justify-center rounded-full border border-emerald-400/60 bg-emerald-500/15 px-4 py-1.5 sm:px-5 sm:py-2 text-base sm:text-lg font-semibold text-emerald-200 shadow-sm backdrop-blur-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-emerald-300 hover:bg-emerald-500/25 hover:text-emerald-100 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300"
+                  className="inline-flex items-center justify-center rounded-full border border-emerald-400/60 bg-emerald-900/80 px-4 py-1.5 sm:px-5 sm:py-2 text-base sm:text-lg font-semibold text-emerald-200 shadow-sm backdrop-blur-md transition-all duration-200 hover:-translate-y-0.5 hover:border-emerald-300 hover:bg-emerald-800/90 hover:text-emerald-100 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300 md:bg-emerald-500/15 md:backdrop-blur-sm md:hover:bg-emerald-500/25"
                   itemProp="email"
                 >
                   Contact
@@ -131,7 +290,7 @@ export default function Header() {
                   href="https://www.linkedin.com/in/martin-poole-6b9b762b/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center rounded-full border border-emerald-400/60 bg-emerald-500/10 px-4 py-1.5 sm:px-5 sm:py-2 text-base sm:text-lg font-semibold text-emerald-200 shadow-sm backdrop-blur-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-emerald-300 hover:bg-emerald-500/25 hover:text-emerald-100 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300"
+                  className="inline-flex items-center justify-center rounded-full border border-emerald-400/60 bg-emerald-900/80 px-4 py-1.5 sm:px-5 sm:py-2 text-base sm:text-lg font-semibold text-emerald-200 shadow-sm backdrop-blur-md transition-all duration-200 hover:-translate-y-0.5 hover:border-emerald-300 hover:bg-emerald-800/90 hover:text-emerald-100 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300 md:bg-emerald-500/10 md:backdrop-blur-sm md:hover:bg-emerald-500/25"
                   itemProp="sameAs"
                   aria-label="Martin Poole on LinkedIn"
                 >
@@ -143,7 +302,7 @@ export default function Header() {
                   href="https://x.com/_Martin_Poole"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center rounded-full border border-emerald-400/60 bg-emerald-500/10 px-4 py-1.5 sm:px-5 sm:py-2 text-base sm:text-lg font-semibold text-emerald-200 shadow-sm backdrop-blur-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-emerald-300 hover:bg-emerald-500/25 hover:text-emerald-100 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300"
+                  className="inline-flex items-center justify-center rounded-full border border-emerald-400/60 bg-emerald-900/80 px-4 py-1.5 sm:px-5 sm:py-2 text-base sm:text-lg font-semibold text-emerald-200 shadow-sm backdrop-blur-md transition-all duration-200 hover:-translate-y-0.5 hover:border-emerald-300 hover:bg-emerald-800/90 hover:text-emerald-100 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300 md:bg-emerald-500/10 md:backdrop-blur-sm md:hover:bg-emerald-500/25"
                   itemProp="sameAs"
                   aria-label="Martin Poole on X"
                 >
@@ -153,7 +312,7 @@ export default function Header() {
               <li>
                 <Link
                   href="/blog"
-                  className="inline-flex items-center justify-center rounded-full border border-amber-400/60 bg-amber-500/15 px-4 py-1.5 sm:px-5 sm:py-2 text-base sm:text-lg font-semibold text-amber-200 shadow-sm backdrop-blur-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-amber-300 hover:bg-amber-500/25 hover:text-amber-100 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300"
+                  className="inline-flex items-center justify-center rounded-full border border-amber-400/60 bg-amber-900/80 px-4 py-1.5 sm:px-5 sm:py-2 text-base sm:text-lg font-semibold text-amber-200 shadow-sm backdrop-blur-md transition-all duration-200 hover:-translate-y-0.5 hover:border-amber-300 hover:bg-amber-800/90 hover:text-amber-100 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300 md:bg-amber-500/15 md:backdrop-blur-sm md:hover:bg-amber-500/25"
                 >
                   Blog
                 </Link>
@@ -161,17 +320,22 @@ export default function Header() {
             </ul>
           </div>
           <nav
-            className={`mt-6 transition-all duration-500 ease-out focus-within:opacity-100 focus-within:visible focus-within:pointer-events-auto opacity-100 visible pointer-events-auto 2xl:focus-within:opacity-100 2xl:focus-within:visible 2xl:focus-within:pointer-events-auto ${
-              showNav || isHovered
+            className={`transition-all duration-500 ease-out focus-within:opacity-100 focus-within:visible focus-within:pointer-events-auto ${
+              isMinimized
+                ? "hidden"
+                : "mt-6 opacity-100 visible pointer-events-auto 2xl:focus-within:opacity-100 2xl:focus-within:visible 2xl:focus-within:pointer-events-auto"
+            } ${
+              !isMinimized && (showNav || isHovered)
                 ? "2xl:opacity-100 2xl:visible 2xl:pointer-events-auto"
-                : "2xl:opacity-0 2xl:invisible 2xl:pointer-events-none"
+                : !isMinimized
+                  ? "2xl:opacity-0 2xl:invisible 2xl:pointer-events-none"
+                  : ""
             }`}
             aria-label="CV section navigation"
           >
             <ul className="flex flex-wrap justify-center md:justify-start gap-2">
               {[
                 { href: "#about", label: "About" },
-                { href: "#linkedin", label: "LinkedIn" },
                 { href: "#skills", label: "Skills" },
                 { href: "#projects", label: "Projects" },
                 { href: "#personal-projects", label: "Personal" },
@@ -182,7 +346,8 @@ export default function Header() {
                 <li key={link.href}>
                   <a
                     href={link.href}
-                    className="inline-flex items-center rounded-full border border-emerald-400/50 bg-emerald-500/10 px-3 py-1 text-sm font-semibold text-emerald-200 transition-colors hover:bg-emerald-500/20 hover:text-emerald-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400"
+                    onClick={(e) => handleAnchorClick(e, link.href)}
+                    className="inline-flex items-center rounded-full border border-emerald-400/50 bg-emerald-900/80 px-3 py-1 text-sm font-semibold text-emerald-200 backdrop-blur-md transition-colors hover:bg-emerald-800/90 hover:text-emerald-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 md:bg-emerald-500/10 md:backdrop-blur-sm md:hover:bg-emerald-500/20"
                   >
                     {link.label}
                   </a>
@@ -191,7 +356,164 @@ export default function Header() {
             </ul>
           </nav>
         </AnimatedSection>
+        {/* Desktop: contact links on right side when minimized */}
+        {isMinimized && (
+          <div className="hidden md:flex flex-col flex-shrink-0 items-center gap-1 ml-auto">
+            <div className="flex items-center gap-2">
+              <a
+                href="mailto:martin_poole@hotmail.com"
+                className="inline-flex items-center rounded-full border border-emerald-400/40 bg-emerald-500/10 px-2.5 py-0.5 text-xs font-medium text-emerald-200 transition-colors hover:bg-emerald-500/20 hover:text-emerald-100"
+                itemProp="email"
+              >
+                Contact
+              </a>
+              <a
+                href="https://www.linkedin.com/in/martin-poole-6b9b762b/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center rounded-full border border-emerald-400/40 bg-emerald-500/10 px-2.5 py-0.5 text-xs font-medium text-emerald-200 transition-colors hover:bg-emerald-500/20 hover:text-emerald-100"
+                aria-label="Martin Poole on LinkedIn"
+              >
+                LinkedIn
+              </a>
+              <a
+                href="https://x.com/_Martin_Poole"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center rounded-full border border-emerald-400/40 bg-emerald-500/10 px-2.5 py-0.5 text-xs font-medium text-emerald-200 transition-colors hover:bg-emerald-500/20 hover:text-emerald-100"
+                aria-label="Martin Poole on X"
+              >
+                X
+              </a>
+            </div>
+            <Link
+              href="/blog"
+              className="inline-flex items-center rounded-full border border-amber-400/40 bg-amber-500/10 px-2.5 py-0.5 text-xs font-medium text-amber-200 transition-colors hover:bg-amber-500/20 hover:text-amber-100"
+            >
+              Blog
+            </Link>
+          </div>
+        )}
+        {/* Mobile hamburger button - only when minimized on small screens */}
+        {isMinimized && (
+          <div className="md:hidden flex-shrink-0 ml-auto">
+            <button
+              type="button"
+              aria-label={
+                mobileMenuOpen
+                  ? "Close navigation menu"
+                  : "Open navigation menu"
+              }
+              aria-expanded={mobileMenuOpen}
+              className="p-1.5 rounded-lg border border-emerald-400/40 bg-emerald-500/10 text-emerald-200 transition-colors hover:bg-emerald-500/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400"
+              onClick={() => setMobileMenuOpen((prev) => !prev)}
+            >
+              {mobileMenuOpen ? (
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-5 w-5"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  strokeWidth={2}
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                </svg>
+              ) : (
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-5 w-5"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  strokeWidth={2}
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M4 6h16M4 12h16M4 18h16"
+                  />
+                </svg>
+              )}
+            </button>
+          </div>
+        )}
       </div>
+
+      {/* Mobile dropdown menu */}
+      <div
+        className={`md:hidden relative z-20 transition-all duration-300 ease-in-out overflow-hidden ${
+          isMinimized && mobileMenuOpen
+            ? "max-h-96 opacity-100"
+            : "max-h-0 opacity-0"
+        }`}
+      >
+        <nav
+          className="container mx-auto px-4 pt-3 pb-4"
+          aria-label="Mobile navigation"
+        >
+          <ul className="flex flex-wrap gap-2">
+            {[
+              { href: "#about", label: "About" },
+              { href: "#skills", label: "Skills" },
+              { href: "#projects", label: "Projects" },
+              { href: "#personal-projects", label: "Personal" },
+              { href: "#experience", label: "Experience" },
+              { href: "#education", label: "Education" },
+              { href: "#interests", label: "Interests" },
+            ].map((link) => (
+              <li key={link.href}>
+                <a
+                  href={link.href}
+                  onClick={(e) => handleAnchorClick(e, link.href)}
+                  className="inline-flex items-center rounded-full border border-emerald-400/50 bg-emerald-900/80 px-3 py-1 text-sm font-semibold text-emerald-200 backdrop-blur-md transition-colors hover:bg-emerald-800/90 hover:text-emerald-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400"
+                >
+                  {link.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+          <div className="mt-3 pt-3 border-t border-gray-700/50 flex flex-wrap items-center gap-2">
+            <a
+              href="mailto:martin_poole@hotmail.com"
+              onClick={() => setMobileMenuOpen(false)}
+              className="inline-flex items-center rounded-full border border-emerald-400/50 bg-emerald-900/80 px-3 py-1 text-sm font-semibold text-emerald-200 backdrop-blur-md transition-colors hover:bg-emerald-800/90 hover:text-emerald-100"
+            >
+              Contact
+            </a>
+            <a
+              href="https://www.linkedin.com/in/martin-poole-6b9b762b/"
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => setMobileMenuOpen(false)}
+              className="inline-flex items-center rounded-full border border-emerald-400/50 bg-emerald-900/80 px-3 py-1 text-sm font-semibold text-emerald-200 backdrop-blur-md transition-colors hover:bg-emerald-800/90 hover:text-emerald-100"
+            >
+              LinkedIn
+            </a>
+            <a
+              href="https://x.com/_Martin_Poole"
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => setMobileMenuOpen(false)}
+              className="inline-flex items-center rounded-full border border-emerald-400/50 bg-emerald-900/80 px-3 py-1 text-sm font-semibold text-emerald-200 backdrop-blur-md transition-colors hover:bg-emerald-800/90 hover:text-emerald-100"
+            >
+              X
+            </a>
+            <Link
+              href="/blog"
+              onClick={() => setMobileMenuOpen(false)}
+              className="inline-flex items-center rounded-full border border-amber-400/50 bg-amber-900/80 px-3 py-1 text-sm font-semibold text-amber-200 backdrop-blur-md transition-colors hover:bg-amber-800/90 hover:text-amber-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300"
+            >
+              Blog
+            </Link>
+          </div>
+        </nav>
+      </div>
+
       <div className="absolute inset-0 w-full h-full bg-gradient-to-b from-gray-900/80 to-transparent z-0 pointer-events-none" />
       {/* Modal overlay for enlarged profile picture */}
       {showProfileModal && (
