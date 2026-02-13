@@ -102,7 +102,7 @@ export default function Home() {
   const aiTools = [
     { name: "GitHub Copilot" },
     { name: "Claude Sonnet / Opus" },
-    { name: "GPT-5" },
+    { name: "GPT Codex" },
     { name: "Gemini Pro / Flash" },
     { name: "MCP / Skills (Playwright, Chrome, Jira)" },
     { name: "GitHub Coding Agents" },
@@ -279,8 +279,7 @@ export default function Home() {
               <strong className="font-semibold text-gray-900">
                 Selenium WebDriver
               </strong>{" "}
-              to build automated tests within Node.js / Java / .NET
-              environments.
+              to build automated tests within Node.js / Java / .NET ecosystems.
             </p>
             <p className="text-gray-700 text-lg leading-relaxed mt-4">
               Passionate about the usage of{" "}
