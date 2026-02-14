@@ -36,8 +36,12 @@ export default function SkillSection({
                 } group`}
               >
                 <div
+                  role="progressbar"
+                  aria-valuenow={item.level}
+                  aria-valuemin={0}
+                  aria-valuemax={10}
+                  aria-label={`${item.name} proficiency: ${item.level} out of 10`}
                   className="h-2 bg-gray-200 rounded-full overflow-hidden"
-                  aria-label={`${item.name} proficiency ${item.level} out of 10`}
                 >
                   <div
                     className="h-full bg-gradient-to-r from-emerald-500 to-blue-500 rounded-full transition-all"
