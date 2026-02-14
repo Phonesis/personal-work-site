@@ -11,10 +11,13 @@ on:
 
 permissions: read-all
 
+strict: false
+
 network:
-  - defaults
-  - www.w3.org
-  - w3.org
+  allowed:
+    - defaults
+    - www.w3.org
+    - w3.org
 
 safe-outputs:
   create-discussion:
