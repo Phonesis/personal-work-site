@@ -51,8 +51,7 @@ with details.
 
 Our team uses the Web Content Accessibility Guidelines (WCAG) 2.2. You may
 refer to these as necessary by browsing to https://www.w3.org/TR/WCAG22/ using
-the WebFetch tool. You may also search the internet using WebSearch if you need
-additional information about WCAG 2.2.
+the WebFetch tool for additional information about WCAG 2.2.
 
 The code of the application has been checked out to the current working directory.
 
@@ -62,15 +61,19 @@ Execution constraints for this workflow environment:
 - Do not run `npx playwright install --with-deps` or `npx playwright install-deps`.
 - Do not attempt to install OS-level browser dependencies.
 - Use the Playwright MCP tool directly for browser automation tasks.
+- Before starting analysis, discover available MCP tools and confirm `playwright` is available.
+- If `playwright` is unavailable, call the safe output `missing_tool` with details and stop; do not claim you can use a local Playwright setup as a substitute.
 
 Steps:
 
-1. Use the Playwright MCP tool to browse to `localhost:3000`. Review the website for accessibility problems by navigating around, clicking
+1. Discover available tools first and confirm `playwright`, `web-fetch`, and `github` are present.
+
+2. Use the Playwright MCP tool to browse to `localhost:3000`. Review the website for accessibility problems by navigating around, clicking
    links, pressing keys, taking snapshots and/or screenshots to review, etc. using the appropriate Playwright MCP commands.
 
-2. Review the source code of the application to look for accessibility issues in the code. Use the Grep, LS, Read, etc. tools.
+3. Review the source code of the application to look for accessibility issues in the code. Use the Grep, LS, Read, etc. tools.
 
-3. Use the GitHub MCP tool to create discussions for any accessibility problems you find. Each discussion should include:
+4. Use the GitHub MCP tool to create discussions for any accessibility problems you find. Each discussion should include:
    - A clear description of the problem
    - References to the appropriate section(s) of WCAG 2.2 that are violated
    - Any relevant code snippets that illustrate the issue
