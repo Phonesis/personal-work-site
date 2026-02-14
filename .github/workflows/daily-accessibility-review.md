@@ -59,6 +59,7 @@ Execution constraints for this workflow environment:
 - Do not run `sudo` commands.
 - Do not run `npx playwright install --with-deps` or `npx playwright install-deps`.
 - Do not attempt to install OS-level browser dependencies.
+- Do not run `npm install`/`npx` for MCP server packages (for example `@playwright/mcp-server`); MCP servers are pre-provisioned by the workflow.
 - Use the Playwright MCP tool directly for browser automation tasks.
 - Before starting analysis, discover available MCP tools and confirm `playwright` is available.
 - If `playwright` is unavailable, call the safe output `missing_tool` with details and stop; do not claim you can use a local Playwright setup as a substitute.
