@@ -53,7 +53,7 @@ with details.
 
 Our team uses the Web Content Accessibility Guidelines (WCAG) 2.2. You may
 refer to these as necessary by browsing to https://www.w3.org/TR/WCAG22/ using
-the WebFetch tool for additional information about WCAG 2.2.
+the web-fetch tool for additional information about WCAG 2.2.
 
 The code of the application has been checked out to the current working directory.
 
@@ -78,5 +78,3 @@ Steps:
    - A clear description of the problem
    - References to the appropriate section(s) of WCAG 2.2 that are violated
    - Any relevant code snippets that illustrate the issue
-
-5. If you encountered any issues connecting to the Playwright MCP, or installing Playwright, mention this in the conclusion and explain the issue and what you did to remedy it.
