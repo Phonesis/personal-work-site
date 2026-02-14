@@ -11,7 +11,10 @@ on:
 
 permissions: read-all
 
-network: defaults
+network:
+  - defaults
+  - www.w3.org
+  - w3.org
 
 safe-outputs:
   create-discussion:
@@ -56,8 +59,6 @@ The code of the application has been checked out to the current working director
 
 Execution constraints for this workflow environment:
 
-- Do not run `sudo` commands.
-- Do not run `npx playwright install --with-deps` or `npx playwright install-deps`.
 - Do not attempt to install OS-level browser dependencies.
 - Do not run `npm install`/`npx` for MCP server packages (for example `@playwright/mcp-server`); MCP servers are pre-provisioned by the workflow.
 - Use the Playwright MCP tool directly for browser automation tasks.
@@ -77,3 +78,5 @@ Steps:
    - A clear description of the problem
    - References to the appropriate section(s) of WCAG 2.2 that are violated
    - Any relevant code snippets that illustrate the issue
+
+5. If you encountered any issues connecting to the Playwright MCP, or installing Playwright, mention this in the conclusion and explain the issue and what you did to remedy it.
