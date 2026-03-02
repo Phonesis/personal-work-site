@@ -155,6 +155,14 @@ export const blogPosts: BlogPost[] = [
         type: "paragraph",
         text: "If you are registered with the Ministry of Testing site, you can watch a recent ‘call for insights’ video I did about this topic [here](https://www.ministryoftesting.com/insights/is-github-agentic-workflows-putting-exploratory-testing-back-in-the-ci-spotlight).",
       },
+      {
+        type: "embed",
+        embedType: "linkedin",
+        embedUrl:
+          "https://www.linkedin.com/embed/feed/update/urn:li:share:7434256540351492096?collapsed=1",
+        caption: "Join the discussion on LinkedIn",
+        height: "502",
+      },
     ],
   },
   {
